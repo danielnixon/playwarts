@@ -1,4 +1,4 @@
-name := "play-warts"
+name := "playwarts"
 
 version := "0.1"
 
