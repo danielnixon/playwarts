@@ -1,6 +1,24 @@
 # PlayWarts [![Build Status](https://travis-ci.org/danielnixon/playwarts.svg?branch=master)](https://travis-ci.org/danielnixon/playwarts)
 
-[WartRemover](https://github.com/typelevel/wartremover) warts for [Play Framework](https://www.playframework.com/)
+[WartRemover](https://github.com/typelevel/wartremover) warts for [Play Framework](https://www.playframework.com/).
+
+## Usage
+
+1. Setup [WartRemover](https://github.com/typelevel/wartremover).
+2. Add the following to your `build.sbt`:
+    ```scala
+    resolvers += Resolver.sonatypeRepo("snapshots")
+    
+    libraryDependencies += "org.danielnixon" %% "playwarts" % "0.1-SNAPSHOT"
+    
+    wartremoverClasspaths += "file:" +
+      Path.userHome.absolutePath +
+      "/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-0.1-SNAPSHOT.jar"
+      
+    wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.FormPartial"),
+      Wart.custom("org.danielnixon.playwarts.JsValuePartial"))
+    ```
 
 ## Warts
 
