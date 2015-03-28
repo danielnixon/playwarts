@@ -1,6 +1,6 @@
 name := "playwarts"
 
-version := "0.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 organization := "org.danielnixon"
 
@@ -33,10 +33,10 @@ publishTo := {
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.6"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-libraryDependencies += "org.brianmckenna" %% "wartremover" % "0.11"
+libraryDependencies += "org.brianmckenna" %% "wartremover" % "0.12"
 
 exportJars := true
