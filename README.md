@@ -9,11 +9,11 @@
     ```scala
     resolvers += Resolver.sonatypeRepo("snapshots")
     
-    libraryDependencies += "org.danielnixon" %% "playwarts" % "0.1-SNAPSHOT"
+    libraryDependencies += "org.danielnixon" %% "playwarts" % "0.2-SNAPSHOT"
     
     wartremoverClasspaths += "file:" +
       Path.userHome.absolutePath +
-      "/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-0.1-SNAPSHOT.jar"
+      "/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-0.2-SNAPSHOT.jar"
       
     wartremoverWarnings ++= Seq(
       Wart.custom("org.danielnixon.playwarts.FormPartial"),
