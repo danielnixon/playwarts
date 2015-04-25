@@ -7,8 +7,6 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    resolvers += Resolver.sonatypeRepo("snapshots")
-    
     libraryDependencies += "org.danielnixon" %% "playwarts" % "0.2"
     
     wartremoverClasspaths += "file:" +
