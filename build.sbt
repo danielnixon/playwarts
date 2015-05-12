@@ -37,6 +37,6 @@ scalaVersion := "2.11.6"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-libraryDependencies += "org.brianmckenna" %% "wartremover" % "0.12"
+libraryDependencies += "org.brianmckenna" %% "wartremover" % "0.13"
 
 exportJars := true
