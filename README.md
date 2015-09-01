@@ -7,18 +7,32 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    libraryDependencies += "org.danielnixon" %% "playwarts" % "0.2"
+    val playwartsVersion = "0.3"
+
+    libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
-    wartremoverClasspaths += "file:" +
-      Path.userHome.absolutePath +
-      "/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-0.2.jar"
+    wartremoverClasspaths += s"file:${Path.userHome.absolutePath}/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$playwartsVersion.jar"
       
     wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.AkkaObject"),
+      Wart.custom("org.danielnixon.playwarts.CacheObject"),
       Wart.custom("org.danielnixon.playwarts.FormPartial"),
-      Wart.custom("org.danielnixon.playwarts.JsValuePartial"))
+      Wart.custom("org.danielnixon.playwarts.JsValuePartial"),
+      Wart.custom("org.danielnixon.playwarts.PlayObject"),
+      Wart.custom("org.danielnixon.playwarts.WSObject"))
     ```
 
 ## Warts
+
+### AkkaObject
+
+`play.api.libs.concurrent.Akka` is no longer needed. Declare a dependency on `ActorSystem` instead.
+See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
+
+### CacheObject
+
+`play.api.cache.Cache` relies on global state. Declare a dependency on `play.api.cache.CacheApi` instead.
+See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
 ### FormPartial
 
@@ -30,3 +44,17 @@ explicitly handle forms with errors and successful form submissions.
 
 `play.api.libs.json.JsValue` has an `as[T]` method which tries to convert the JSON
 value into a T, throwing an exception if it can't. The program should be refactored to use `play.api.libs.json.JsValue#asOpt[T]` which maps any error to `None`.
+
+### PlayObject
+
+The following methods on the `play.api.Play` object are disabled:
+* `Play#maybeApplication`: Relies on global state.
+* `Play#current`: Relies on global state, throws a `RuntimeException` if no current application.
+* `Play#unsafeApplication`: Relies on global state, returns `null` if no current application.
+
+In all three cases you should declare a dependency on `play.api.Application` instead.
+
+### WSObject
+
+`play.api.libs.ws.WS` relies on global state. Declare a dependency on `play.api.libs.ws.WSApi` instead.
+See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
