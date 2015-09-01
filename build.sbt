@@ -1,6 +1,6 @@
 name := "playwarts"
 
-version := "0.3-SNAPSHOT"
+version := "0.3"
 
 organization := "org.danielnixon"
 
