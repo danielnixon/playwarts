@@ -1,13 +1,13 @@
 # PlayWarts [![Build Status](https://travis-ci.org/danielnixon/playwarts.svg?branch=master)](https://travis-ci.org/danielnixon/playwarts) [![Dependency Status](https://www.versioneye.com/user/projects/5418232b54ffbda60b000061/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5418232b54ffbda60b000061)
 
-[WartRemover](https://github.com/typelevel/wartremover) warts for [Play Framework](https://www.playframework.com/) and [Slick](http://slick.typesafe.com/).
+[WartRemover](https://github.com/typelevel/wartremover) warts for [Play Framework](https://www.playframework.com/) and [Slick](http://slick.typesafe.com/) (and some bonus warts).
 
 ## Usage
 
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.4"
+    val playwartsVersion = "0.6"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -27,6 +27,11 @@
     // Slick
     wartremoverWarnings ++= Seq(
       Wart.custom("org.danielnixon.playwarts.BasicStreamingActionPartial"))
+
+    // Bonus Warts
+    wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
+      Wart.custom("org.danielnixon.playwarts.MapPartial"))
     ```
 
 ## Warts
@@ -81,3 +86,29 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 
 #### BasicStreamingActionPartial
 `slick.profile.BasicStreamingAction` has a `head` method which will fail if the stream is empty (i.e. if the `SELECT` SQL query returned zero rows). Use `headOption` instead.
+
+### Bonus Warts
+
+#### GenTraversableLikeOps
+
+WartRemover's [ListOps](https://github.com/puffnfresh/wartremover#listops) wart only applies to `scala.collection.immutable.List`. The `GenTraversableLikeOps` wart extends it to everything that implements `scala.collection.GenTraversableLike`.
+
+`scala.collection.GenTraversableLike` has:
+
+* `head`,
+* `tail`,
+* `init` and
+* `last` methods,
+
+all of which will throw if the list is empty. The program should be refactored to use:
+
+* `GenTraversableLike#headOption`,
+* `GenTraversableLike#drop(1)`,
+* `GenTraversableLike#dropRight(1)` and
+* `GenTraversableLike#lastOption` respectively,
+
+to explicitly handle both populated and empty `GenTraversableLike`s.
+
+#### MapPartial
+
+`scala.collection.Map` has an `apply` method that can throw ` NoSuchElementException` if there is no mapping for the given key. Use `Map#get` instead.
