@@ -17,9 +17,10 @@
     wartremoverWarnings ++= Seq(
       Wart.custom("org.danielnixon.playwarts.AkkaObject"),
       Wart.custom("org.danielnixon.playwarts.CacheObject"),
+      Wart.custom("org.danielnixon.playwarts.CryptoObject"),
       Wart.custom("org.danielnixon.playwarts.FormPartial"),
-      Wart.custom("org.danielnixon.playwarts.MessagesObject"),
       Wart.custom("org.danielnixon.playwarts.JsValuePartial"),
+      Wart.custom("org.danielnixon.playwarts.MessagesObject"),
       Wart.custom("org.danielnixon.playwarts.PlayObject"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
     
@@ -42,9 +43,10 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 `play.api.cache.Cache` relies on global state. Declare a dependency on `play.api.cache.CacheApi` instead.
 See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
-#### MessagesObject
+#### CryptoObject
 
-`play.api.i18n.Messages.Implicits` exists to allow you to continue to use static controller objects in Play 2.4.x. Use controller classes with dependency injection instead. See [Migration24#I18n](https://www.playframework.com/documentation/2.4.x/Migration24#I18n).
+The `play.api.libs.Crypto` object relies on global state. Declare a dependency on the `play.api.libs.Crypto` class instead.
+See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
 #### FormPartial
 
@@ -56,6 +58,10 @@ explicitly handle forms with errors and successful form submissions.
 
 `play.api.libs.json.JsValue` has an `as[T]` method which tries to convert the JSON
 value into a T, throwing an exception if it can't. The program should be refactored to use `play.api.libs.json.JsValue#asOpt[T]` which maps any error to `None`.
+
+#### MessagesObject
+
+`play.api.i18n.Messages.Implicits` exists to allow you to continue to use static controller objects in Play 2.4.x. Use controller classes with dependency injection instead. See [Migration24#I18n](https://www.playframework.com/documentation/2.4.x/Migration24#I18n).
 
 #### PlayObject
 
