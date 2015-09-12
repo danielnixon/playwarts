@@ -16,8 +16,7 @@ object MapPartial extends WartTraverser {
           case Select(left, ApplyName) if left.tpe.baseType(mapSymbol) != NoType =>
             u.error(tree.pos, "Map#apply is disabled - use Map#get instead")
           case LabelDef(_, _, rhs) if isSynthetic(u)(tree) =>
-          case _ =>
-            super.traverse(tree)
+          case _ => super.traverse(tree)
         }
       }
     }

@@ -16,8 +16,7 @@ object JsReadablePartial extends WartTraverser {
           case Select(left, AsName) if left.tpe.baseType(jsReadableSymbol) != NoType =>
             u.error(tree.pos, "JsReadable#as is disabled - use JsReadable#asOpt instead")
           case LabelDef(_, _, rhs) if isSynthetic(u)(tree) =>
-          case _ =>
-            super.traverse(tree)
+          case _ => super.traverse(tree)
         }
       }
     }

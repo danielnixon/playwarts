@@ -6,18 +6,17 @@ object JsLookupResultPartial extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {
     import u.universe._
 
-    val jsReadableSymbol = rootMirror.staticClass("play.api.libs.json.JsLookupResult")
-    val AsName = TermName("get")
+    val jsLookupResultSymbol = rootMirror.staticClass("play.api.libs.json.JsLookupResult")
+    val GetName = TermName("get")
     new u.Traverser {
       override def traverse(tree: Tree) {
         tree match {
           // Ignore trees marked by SuppressWarnings
           case t if hasWartAnnotation(u)(t) =>
-          case Select(left, AsName) if left.tpe.baseType(jsReadableSymbol) != NoType =>
+          case Select(left, GetName) if left.tpe.baseType(jsLookupResultSymbol) != NoType =>
             u.error(tree.pos, "JsLookupResult#get is disabled - use JsLookupResult#getOrElse instead")
           case LabelDef(_, _, rhs) if isSynthetic(u)(tree) =>
-          case _ =>
-            super.traverse(tree)
+          case _ => super.traverse(tree)
         }
       }
     }
