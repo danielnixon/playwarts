@@ -12,7 +12,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.6"
+    val playwartsVersion = "0.7"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -23,8 +23,12 @@
       Wart.custom("org.danielnixon.playwarts.AkkaObject"),
       Wart.custom("org.danielnixon.playwarts.CacheObject"),
       Wart.custom("org.danielnixon.playwarts.CryptoObject"),
+      Wart.custom("org.danielnixon.playwarts.DBObject"),
       Wart.custom("org.danielnixon.playwarts.FormPartial"),
-      Wart.custom("org.danielnixon.playwarts.JsValuePartial"),
+      Wart.custom("org.danielnixon.playwarts.GlobalSettings"),
+      Wart.custom("org.danielnixon.playwarts.JsLookupResultPartial"),
+      Wart.custom("org.danielnixon.playwarts.JsReadablePartial"),
+      Wart.custom("org.danielnixon.playwarts.LangObject"),
       Wart.custom("org.danielnixon.playwarts.MessagesObject"),
       Wart.custom("org.danielnixon.playwarts.PlayObject"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
@@ -58,16 +62,32 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 The `play.api.libs.Crypto` object relies on global state. Declare a dependency on the `play.api.libs.Crypto` class instead.
 See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
+#### DBObject
+
+The `play.api.db.DB` object relies on global state. Declare a dependency on `play.api.db.DBApi` or `play.api.db.Database` instead.
+See [Migration24#Dependency-Injected-Components](https://www.playApiframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
+
 #### FormPartial
 
 `play.api.data.Form` has a `get` method which will throw if the form contains
 errors. The program should be refactored to use `play.api.data.Form#fold` to
 explicitly handle forms with errors and successful form submissions.
 
-#### JsValuePartial
+#### GlobalSettings
 
-`play.api.libs.json.JsValue` has an `as[T]` method which tries to convert the JSON
-value into a T, throwing an exception if it can't. The program should be refactored to use `play.api.libs.json.JsValue#asOpt[T]` which maps any error to `None`.
+`GlobalSettings` relies on global state. See [Migration24#GlobalSettings](https://playframework.com/documentation/2.4.x/Migration24#GlobalSettings).
+
+### JsLookupResultPartial
+
+`play.api.libs.json.JsLookupResult` has a `get` method which can throw. Use `JsLookupResult#getOrElse` instead.
+
+### JsReadablePartial
+
+`play.api.libs.json.JsReadable` has an `as` method which can throw. Use `JsReadable#asOpt` instead.
+
+### LangObject
+
+The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
 #### MessagesObject
 
@@ -90,6 +110,7 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 ### Slick
 
 #### BasicStreamingActionPartial
+
 `slick.profile.BasicStreamingAction` has a `head` method which will fail if the stream is empty (i.e. if the `SELECT` SQL query returned zero rows). Use `headOption` instead.
 
 ### Bonus Warts
