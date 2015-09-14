@@ -39,7 +39,8 @@ resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies ++= Seq(
   "org.brianmckenna" %% "wartremover" % "0.14",
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-  "com.typesafe.play" % "play_2.11" % "2.4.3" % "test")
+  "org.scalatest" %% "scalatest" % "2.2.4" % Test,
+  "com.typesafe.play" % "play_2.11" % "2.4.3" % Test,
+  "com.typesafe.play" %% "play-slick" % "1.0.1" % Test)
 
 exportJars := true
