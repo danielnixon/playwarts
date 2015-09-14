@@ -1,4 +1,3 @@
 language: scala
-scala:
-- 2.11.6
-script: sbt compile
+scala: 2.11.7
+script: sbt compile test

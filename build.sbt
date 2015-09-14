@@ -8,7 +8,7 @@ licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.ap
 
 homepage := Some(url("https://github.com/danielnixon/playwarts"))
 
-pomExtra := (
+pomExtra :=
   <scm>
     <url>git@github.com:danielnixon/playwarts.git</url>
     <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
@@ -19,7 +19,7 @@ pomExtra := (
       <name>Daniel Nixon</name>
       <url>https://danielnixon.org/</url>
     </developer>
-  </developers>)
+  </developers>
 
 publishMavenStyle := true
 
@@ -33,10 +33,13 @@ publishTo := {
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-libraryDependencies += "org.brianmckenna" %% "wartremover" % "0.14"
+libraryDependencies ++= Seq(
+  "org.brianmckenna" %% "wartremover" % "0.14",
+  "org.scalatest" %% "scalatest" % "2.2.4" % "test",
+  "com.typesafe.play" % "play_2.11" % "2.4.3" % "test")
 
 exportJars := true
