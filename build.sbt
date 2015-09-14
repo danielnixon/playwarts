@@ -8,7 +8,7 @@ licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.ap
 
 homepage := Some(url("https://github.com/danielnixon/playwarts"))
 
-pomExtra :=
+pomExtra := (
   <scm>
     <url>git@github.com:danielnixon/playwarts.git</url>
     <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
@@ -19,7 +19,7 @@ pomExtra :=
       <name>Daniel Nixon</name>
       <url>https://danielnixon.org/</url>
     </developer>
-  </developers>
+  </developers>)
 
 publishMavenStyle := true
 
