@@ -50,8 +50,8 @@ class GenTraversableLikeOpsTest extends FunSuite {
         println(list.last)
       }
     }
-    expectResult(List.empty, "result.errors")(result.errors)
-    expectResult(List.empty, "result.warnings")(result.warnings)
+    assertResult(List.empty, "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
 }

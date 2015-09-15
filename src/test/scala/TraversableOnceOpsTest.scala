@@ -23,8 +23,8 @@ class TraversableOnceOpsTest extends FunSuite {
         println(list.reduceLeft(_ + _))
       }
     }
-    expectResult(List.empty, "result.errors")(result.errors)
-    expectResult(List.empty, "result.warnings")(result.warnings)
+    assertResult(List.empty, "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
 }
