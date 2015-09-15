@@ -37,10 +37,13 @@ scalaVersion := "2.11.7"
 
 resolvers += Resolver.sonatypeRepo("releases")
 
+val playVersion = "2.4.3"
+
 libraryDependencies ++= Seq(
   "org.brianmckenna" %% "wartremover" % "0.14",
   "org.scalatest" %% "scalatest" % "2.2.4" % Test,
-  "com.typesafe.play" % "play_2.11" % "2.4.3" % Test,
-  "com.typesafe.play" %% "play-slick" % "1.0.1" % Test)
+  "com.typesafe.play" %% "play" % playVersion % Test,
+  "com.typesafe.play" %% "play-slick" % "1.0.1" % Test,
+  "com.typesafe.play" %% "play-jdbc" % playVersion % Test)
 
 exportJars := true
