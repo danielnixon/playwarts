@@ -11,7 +11,7 @@ object TraversableOnceOps extends WartTraverser {
       import u.universe._
 
       val traversableOnceSymbol = rootMirror.staticClass("scala.collection.TraversableOnce")
-      val Name: TermName = name
+      val Name = TermName(name)
       new u.Traverser {
         override def traverse(tree: Tree): Unit = {
           tree match {

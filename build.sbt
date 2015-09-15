@@ -35,6 +35,19 @@ publishTo := {
 
 scalaVersion := "2.11.7"
 
+scalacOptions ++= Seq(
+  "-deprecation",
+  "-feature",
+  "-unchecked",
+  "-Xfatal-warnings",
+  "-Xlint:_",
+  "-Ywarn-dead-code",
+  "-Ywarn-inaccessible",
+  "-Ywarn-unused",
+  "-Ywarn-unused-import",
+  "-Ywarn-numeric-widen",
+  "-Ywarn-nullary-override")
+
 resolvers += Resolver.sonatypeRepo("releases")
 
 val playVersion = "2.4.3"

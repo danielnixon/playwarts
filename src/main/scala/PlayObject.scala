@@ -10,7 +10,7 @@ object PlayObject extends WartTraverser {
       import u.universe._
 
       val playObject = rootMirror.staticModule("play.api.Play")
-      val Name: TermName = name
+      val Name = TermName(name)
       new u.Traverser {
         override def traverse(tree: Tree): Unit = {
           tree match {

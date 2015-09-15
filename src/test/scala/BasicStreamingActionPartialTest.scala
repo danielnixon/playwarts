@@ -2,12 +2,13 @@ import org.brianmckenna.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.{BasicStreamingActionPartial => BasicStreamingActionWart}
 import org.scalatest.FunSuite
 import slick.dbio.Effect.All
+import slick.dbio.NoStream
 import slick.profile.BasicStreamingAction
 
 class BasicStreamingActionPartialTest extends FunSuite {
 
   val basicStreamingAction = new BasicStreamingAction[Nothing, Nothing, All] {
-    override def head = ???
+    override def head: ResultAction[Nothing, NoStream, All] = ???
 
     override def headOption = ???
 

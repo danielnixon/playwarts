@@ -11,7 +11,7 @@ object GenTraversableLikeOps extends WartTraverser {
       import u.universe._
 
       val genTraversableLikeSymbol = rootMirror.staticClass("scala.collection.GenTraversableLike")
-      val Name: TermName = name
+      val Name = TermName(name)
       new u.Traverser {
         override def traverse(tree: Tree): Unit = {
           tree match {
