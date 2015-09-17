@@ -57,6 +57,8 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.4" % Test,
   "com.typesafe.play" %% "play" % playVersion % Test,
   "com.typesafe.play" %% "play-slick" % "1.0.1" % Test,
-  "com.typesafe.play" %% "play-jdbc" % playVersion % Test)
+  "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
+  "com.typesafe.play" %% "play-ws" % playVersion % Test,
+  "com.typesafe.play" %% "play-cache" % playVersion % Test)
 
 exportJars := true

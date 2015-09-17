@@ -5,25 +5,7 @@ import play.api.Application
 
 class DBObjectTest extends FunSuite {
 
-  implicit val app = new Application {
-    override def path = ???
-
-    override def actorSystem = ???
-
-    override def errorHandler = ???
-
-    override def stop() = ???
-
-    override def requestHandler = ???
-
-    override def classloader = ???
-
-    override def mode = ???
-
-    override def configuration = ???
-
-    override def plugins = ???
-  }
+  implicit val app = FakeApp.app
 
   test("can't use play.api.db.DB object") {
     val result = WartTestTraverser(DBObject) {
