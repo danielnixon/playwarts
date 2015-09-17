@@ -22,15 +22,19 @@
     wartremoverWarnings ++= Seq(
       Wart.custom("org.danielnixon.playwarts.AkkaObject"),
       Wart.custom("org.danielnixon.playwarts.CacheObject"),
+      Wart.custom("org.danielnixon.playwarts.CookiesPartial"),
       Wart.custom("org.danielnixon.playwarts.CryptoObject"),
       Wart.custom("org.danielnixon.playwarts.DBObject"),
+      Wart.custom("org.danielnixon.playwarts.FlashPartial"),
       Wart.custom("org.danielnixon.playwarts.FormPartial"),
       Wart.custom("org.danielnixon.playwarts.GlobalSettings"),
+      Wart.custom("org.danielnixon.playwarts.HeadersPartial"),
       Wart.custom("org.danielnixon.playwarts.JsLookupResultPartial"),
       Wart.custom("org.danielnixon.playwarts.JsReadablePartial"),
       Wart.custom("org.danielnixon.playwarts.LangObject"),
       Wart.custom("org.danielnixon.playwarts.MessagesObject"),
       Wart.custom("org.danielnixon.playwarts.PlayObject"),
+      Wart.custom("org.danielnixon.playwarts.SessionPartial"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
     
     // Slick
@@ -39,8 +43,10 @@
 
     // Bonus Warts
     wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.GenMapLikePartial"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
-      Wart.custom("org.danielnixon.playwarts.MapPartial"))
+      Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
+      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
     ```
 
 ## Warts
@@ -57,6 +63,10 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 `play.api.cache.Cache` relies on global state. Declare a dependency on `play.api.cache.CacheApi` instead.
 See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
+#### CookiesPartial
+
+`play.api.mvc.Cookies` has an `apply` method that can throw. Use `Cookies#get` instead.
+
 #### CryptoObject
 
 The `play.api.libs.Crypto` object relies on global state. Declare a dependency on the `play.api.libs.Crypto` class instead.
@@ -67,6 +77,10 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 The `play.api.db.DB` object relies on global state. Declare a dependency on `play.api.db.DBApi` or `play.api.db.Database` instead.
 See [Migration24#Dependency-Injected-Components](https://www.playApiframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
+#### FlashPartial
+
+`play.api.mvc.Flash` has an `apply` method that can throw. Use `Flash#get` instead.
+
 #### FormPartial
 
 `play.api.data.Form` has a `get` method which will throw if the form contains
@@ -76,6 +90,10 @@ explicitly handle forms with errors and successful form submissions.
 #### GlobalSettings
 
 `GlobalSettings` relies on global state. See [Migration24#GlobalSettings](https://playframework.com/documentation/2.4.x/Migration24#GlobalSettings).
+
+#### HeadersPartial
+
+`play.api.mvc.Headers` has an `apply` method that can throw. Use `Headers#get` instead.
 
 ### JsLookupResultPartial
 
@@ -102,6 +120,10 @@ The following methods on the `play.api.Play` object are disabled:
 
 In all three cases you should declare a dependency on `play.api.Application` instead.
 
+#### SessionPartial
+
+`play.api.mvc.Session` has an `apply` method that can throw. Use `Session#get` instead.
+
 #### WSObject
 
 `play.api.libs.ws.WS` relies on global state. Declare a dependency on `play.api.libs.ws.WSApi` instead.
@@ -114,6 +136,10 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 `slick.profile.BasicStreamingAction` has a `head` method which will fail if the stream is empty (i.e. if the `SELECT` SQL query returned zero rows). Use `headOption` instead.
 
 ### Bonus Warts
+
+#### GenMapLikePartial
+
+`scala.collection.GenMapLike` has an `apply` method that can throw ` NoSuchElementException` if there is no mapping for the given key. Use `GenMapLike#get` instead.
 
 #### GenTraversableLikeOps
 
@@ -134,7 +160,3 @@ all of which will throw if the list is empty. The program should be refactored t
 * `GenTraversableLike#lastOption` respectively,
 
 to explicitly handle both populated and empty `GenTraversableLike`s.
-
-#### MapPartial
-
-`scala.collection.Map` has an `apply` method that can throw ` NoSuchElementException` if there is no mapping for the given key. Use `Map#get` instead.
