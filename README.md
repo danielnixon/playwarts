@@ -12,7 +12,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.7"
+    val playwartsVersion = "0.8"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
