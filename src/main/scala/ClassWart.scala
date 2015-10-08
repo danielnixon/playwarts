@@ -2,7 +2,7 @@ package org.danielnixon.playwarts
 
 import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
 
-abstract class Partial(symbolName: String, termName: String, errorMessage: String) extends WartTraverser {
+abstract class ClassWart(symbolName: String, termName: String, errorMessage: String) extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {
     import u.universe._
 
