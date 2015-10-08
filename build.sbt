@@ -35,6 +35,9 @@ publishTo := {
 
 scalaVersion := "2.11.7"
 
+coverageMinimum := 90
+coverageFailOnMinimum := true
+
 scalacOptions ++= Seq(
   "-deprecation",
   "-feature",
