@@ -6,7 +6,7 @@ class MessagesObjectTest extends FunSuite {
 
   implicit val app = FakeApp.app
 
-  test("play.api.i18n.Messages#Implicits") {
+  test("can't use play.api.i18n.Messages#Implicits") {
     val result = WartTestTraverser(MessagesObject) {
       val foo = play.api.i18n.Messages.Implicits
     }

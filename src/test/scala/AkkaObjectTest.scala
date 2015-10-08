@@ -6,7 +6,7 @@ class AkkaObjectTest extends FunSuite {
 
   implicit val app = FakeApp.app
 
-  test("can't play.api.libs.concurrent.Akka object") {
+  test("can't use play.api.libs.concurrent.Akka object") {
     val result = WartTestTraverser(AkkaObject) {
       play.api.libs.concurrent.Akka.system
     }
