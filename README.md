@@ -208,7 +208,7 @@ all of which will throw `UnsupportedOperationException` if the collection is emp
 implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
   @SuppressWarnings(Array("org.danielnixon.playwarts.TraversableOnceOps"))
   def maxOpt[B >: A](implicit cmp: Ordering[B]): Option[A] = {
-    if (traversable.isEmpty) None else Some(traversable.max)
+    if (traversable.isEmpty) None else Some(traversable.max(cmp))
   }
 }
 ```
