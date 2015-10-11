@@ -190,3 +190,25 @@ implicit class StringWrapper(value: String) {
   def toIntOpt: Option[Int] = catching[Int](classOf[NumberFormatException]) opt value.toInt
 }
 ```
+
+#### TraversableOnceOps
+
+`scala.collection.TraversableOnce` has a `reduceLeft` method that will throw if the collection is empty. Use `TraversableOnce#reduceLeftOption` or `TraversableOnce#foldLeft` instead.
+
+`scala.collection.TraversableOnce` has
+
+* `max`,
+* `min`,
+* `maxBy` and
+* `minBy` methods, 
+
+all of which will throw `UnsupportedOperationException` if the collection is empty. You can wrap these unsafe methods in an implicit class that might look something like this:
+
+```scala
+implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
+  @SuppressWarnings(Array("org.danielnixon.playwarts.TraversableOnceOps"))
+  def maxOpt[B >: A](implicit cmp: Ordering[B]): Option[A] = {
+    if (traversable.isEmpty) None else Some(traversable.max)
+  }
+}
+```
