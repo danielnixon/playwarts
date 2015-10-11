@@ -182,11 +182,11 @@ all of which will throw `NumberFormatException` (or `IllegalArgumentException` i
 
 You can hide these unsafe `StringOps` methods with an implicit class that might look something like this:
 
-    ```scala
-    implicit class StringWrapper(value: String) {
-      import scala.util.control.Exception.catching
-      
-      @SuppressWarnings(Array("org.danielnixon.playwarts.StringLikeOps"))
-      def toIntOpt: Option[Int] = catching[Int](classOf[NumberFormatException]) opt value.toInt
-    }
-    ```
+```scala
+implicit class StringWrapper(value: String) {
+  import scala.util.control.Exception.catching
+
+  @SuppressWarnings(Array("org.danielnixon.playwarts.StringLikeOps"))
+  def toIntOpt: Option[Int] = catching[Int](classOf[NumberFormatException]) opt value.toInt
+}
+```
