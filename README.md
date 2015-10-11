@@ -12,7 +12,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.8"
+    val playwartsVersion = "0.9"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -43,9 +43,11 @@
 
     // Bonus Warts
     wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.FutureObject"),
       Wart.custom("org.danielnixon.playwarts.GenMapLikePartial"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
+      Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
       Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
     ```
 
@@ -137,6 +139,10 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 
 ### Bonus Warts
 
+#### FutureObject
+
+`scala.concurrent.Future` has a `reduce` method that can throw `NoSuchElementException` if the collection is empty. Use `Future#fold` instead.
+
 #### GenMapLikePartial
 
 `scala.collection.GenMapLike` has an `apply` method that can throw ` NoSuchElementException` if there is no mapping for the given key. Use `GenMapLike#get` instead.
@@ -160,3 +166,27 @@ all of which will throw if the list is empty. The program should be refactored t
 * `GenTraversableLike#lastOption` respectively,
 
 to explicitly handle both populated and empty `GenTraversableLike`s.
+
+#### StringOpsPartial
+
+`scala.collection.immutable.StringOps` has
+* `toBoolean`,
+* `toByte`,
+* `toShort`,
+* `toInt`,
+* `toLong`,
+* `toFloat` and
+* `toDouble` methods,
+
+all of which will throw `NumberFormatException` (or `IllegalArgumentException` in the case of `toBoolean`) if the string cannot be parsed.
+
+You can hide these unsafe `StringOps` methods with an implicit class that might look something like this:
+
+    ```scala
+    implicit class StringWrapper(value: String) {
+      import scala.util.control.Exception.catching
+      
+      @SuppressWarnings(Array("org.danielnixon.playwarts.StringLikeOps"))
+      def toIntOpt: Option[Int] = catching[Int](classOf[NumberFormatException]) opt value.toInt
+    }
+    ```
