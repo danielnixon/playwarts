@@ -12,7 +12,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.9"
+    val playwartsVersion = "0.10"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -48,7 +48,8 @@
       Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
       Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
-      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
+      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"),
+      Wart.custom("org.danielnixon.playwarts.TryPartial"))
     ```
 
 ## Warts
@@ -186,7 +187,7 @@ You can hide these unsafe `StringOps` methods with an implicit class that might 
 implicit class StringWrapper(value: String) {
   import scala.util.control.Exception.catching
 
-  @SuppressWarnings(Array("org.danielnixon.playwarts.StringLikeOps"))
+  @SuppressWarnings(Array("org.danielnixon.playwarts.StringOpsPartial"))
   def toIntOpt: Option[Int] = catching[Int](classOf[NumberFormatException]) opt value.toInt
 }
 ```
@@ -212,3 +213,7 @@ implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
   }
 }
 ```
+
+#### TryPartial
+
+`scala.util.Try` has a `get` method which will throw if the Try failed. Use `Try#getOrElse` instead.
