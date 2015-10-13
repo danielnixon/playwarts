@@ -57,7 +57,7 @@ val playVersion = "2.4.3"
 
 libraryDependencies ++= Seq(
   "org.brianmckenna" %% "wartremover" % "0.14",
-  "org.scalatest" %% "scalatest" % "2.2.4" % Test,
+  "org.scalatest" %% "scalatest" % "2.2.5" % Test,
   "com.typesafe.play" %% "play" % playVersion % Test,
   "com.typesafe.play" %% "play-slick" % "1.1.0" % Test,
   "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
