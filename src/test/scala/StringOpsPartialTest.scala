@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class StringOpsPartialTest extends FunSuite {
 
-  test("can't use StringLike#toBoolean") {
+  test("can't use StringOps#toBoolean") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toBoolean
     }
@@ -12,7 +12,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toByte") {
+  test("can't use StringOps#toByte") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toByte
     }
@@ -20,7 +20,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toShort") {
+  test("can't use StringOps#toShort") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toShort
     }
@@ -28,7 +28,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toInt") {
+  test("can't use StringOps#toInt") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toInt
     }
@@ -36,7 +36,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toLong") {
+  test("can't use StringOps#toLong") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toLong
     }
@@ -44,7 +44,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toFloat") {
+  test("can't use StringOps#toFloat") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toFloat
     }
@@ -52,7 +52,7 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("can't use StringLike#toDouble") {
+  test("can't use StringOps#toDouble") {
     val result = WartTestTraverser(StringOpsPartial) {
       val foo = "foo".toDouble
     }
@@ -60,9 +60,9 @@ class StringOpsPartialTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
-  test("StringLikeOps wart obeys SuppressWarnings") {
+  test("StringOpsPartial wart obeys SuppressWarnings") {
     val result = WartTestTraverser(StringOpsPartial) {
-      @SuppressWarnings(Array("org.danielnixon.playwarts.StringLikeOps"))
+      @SuppressWarnings(Array("org.danielnixon.playwarts.StringOpsPartial"))
       val foo = "foo".toInt
     }
     assertResult(List.empty, "result.errors")(result.errors)

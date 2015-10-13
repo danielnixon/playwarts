@@ -13,14 +13,15 @@ abstract class ClassMultiWart(
     def apply(u: WartUniverse): u.Traverser = {
       import u.universe._
 
-      val genTraversableOnceSymbol = rootMirror.staticClass(targetClassName)
+      val symbol = rootMirror.staticClass(targetClassName)
       val Name = TermName(name)
+
       new u.Traverser {
         override def traverse(tree: Tree): Unit = {
           tree match {
             // Ignore trees marked by SuppressWarnings
             case t if hasWartAnnotation(u)(t) =>
-            case Select(left, Name) if left.tpe.baseType(genTraversableOnceSymbol) != NoType ⇒
+            case Select(left, Name) if left.tpe.baseType(symbol) != NoType ⇒
               u.error(tree.pos, error)
             // TODO: This ignores a lot
             case LabelDef(_, _, rhs) if isSynthetic(u)(tree) ⇒

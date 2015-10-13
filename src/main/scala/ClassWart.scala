@@ -2,11 +2,11 @@ package org.danielnixon.playwarts
 
 import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
 
-abstract class ClassWart(symbolName: String, termName: String, errorMessage: String) extends WartTraverser {
+abstract class ClassWart(targetClassName: String, termName: String, errorMessage: String) extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {
     import u.universe._
 
-    val symbol = rootMirror.staticClass(symbolName)
+    val symbol = rootMirror.staticClass(targetClassName)
     val Name = TermName(termName)
 
     new u.Traverser {

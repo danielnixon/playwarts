@@ -13,14 +13,15 @@ abstract class ObjectMultiWart(
     def apply(u: WartUniverse): u.Traverser = {
       import u.universe._
 
-      val playObject = rootMirror.staticModule(targetObjectName)
+      val symbol = rootMirror.staticModule(targetObjectName)
       val Name = TermName(name)
+
       new u.Traverser {
         override def traverse(tree: Tree): Unit = {
           tree match {
             // Ignore trees marked by SuppressWarnings
             case t if hasWartAnnotation(u)(t) =>
-            case Select(tpt, Name) if tpt.tpe.contains(playObject) => u.error(tree.pos, error)
+            case Select(tpt, Name) if tpt.tpe.contains(symbol) => u.error(tree.pos, error)
             case _ => super.traverse(tree)
           }
         }

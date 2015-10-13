@@ -1,7 +1,7 @@
 package org.danielnixon.playwarts
 
 object StringOpsPartial extends ClassMultiWart(
-  "org.danielnixon.playwarts.StringLikeOps",
+  "org.danielnixon.playwarts.StringOpsPartial",
   "scala.collection.immutable.StringOps",
   List(
     "toBoolean" -> "StringOps#toBoolean is disabled",
