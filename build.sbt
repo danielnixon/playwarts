@@ -53,13 +53,13 @@ scalacOptions ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-val playVersion = "2.4.3"
+val playVersion = "2.4.4"
 
 libraryDependencies ++= Seq(
   "org.brianmckenna" %% "wartremover" % "0.14",
   "org.scalatest" %% "scalatest" % "2.2.5" % Test,
   "com.typesafe.play" %% "play" % playVersion % Test,
-  "com.typesafe.play" %% "play-slick" % "1.1.0" % Test,
+  "com.typesafe.play" %% "play-slick" % "1.1.1" % Test,
   "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
   "com.typesafe.play" %% "play-ws" % playVersion % Test,
   "com.typesafe.play" %% "play-cache" % playVersion % Test)
