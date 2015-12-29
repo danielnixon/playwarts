@@ -53,7 +53,7 @@ scalacOptions ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-val playVersion = "2.4.4"
+val playVersion = "2.4.6"
 
 libraryDependencies ++= Seq(
   "org.brianmckenna" %% "wartremover" % "0.14",
