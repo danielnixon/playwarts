@@ -38,7 +38,7 @@
       Wart.custom("org.danielnixon.playwarts.SessionPartial"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
 
-    wartremoverWarnings ++= Seq(
+    wartremoverErrors in Test ++= Seq(
       Wart.custom("org.danielnixon.playwarts.TestHelpersObject"))
 
     // Slick
