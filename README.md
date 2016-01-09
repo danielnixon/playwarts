@@ -13,7 +13,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.10"
+    val playwartsVersion = "0.12"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -37,17 +37,22 @@
       Wart.custom("org.danielnixon.playwarts.PlayObject"),
       Wart.custom("org.danielnixon.playwarts.SessionPartial"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
-    
+
+    wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.TestHelpersObject"))
+
     // Slick
     wartremoverWarnings ++= Seq(
       Wart.custom("org.danielnixon.playwarts.BasicStreamingActionPartial"))
 
     // Bonus Warts
     wartremoverWarnings ++= Seq(
+      Wart.custom("org.danielnixon.playwarts.DateFormatPartial"),
       Wart.custom("org.danielnixon.playwarts.FutureObject"),
       Wart.custom("org.danielnixon.playwarts.GenMapLikePartial"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
+      Wart.custom("org.danielnixon.playwarts.OptionPartial"),
       Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
       Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"),
       Wart.custom("org.danielnixon.playwarts.TryPartial"))
@@ -99,15 +104,15 @@ explicitly handle forms with errors and successful form submissions.
 
 `play.api.mvc.Headers` has an `apply` method that can throw. Use `Headers#get` instead.
 
-### JsLookupResultPartial
+#### JsLookupResultPartial
 
 `play.api.libs.json.JsLookupResult` has a `get` method which can throw. Use `JsLookupResult#getOrElse` instead.
 
-### JsReadablePartial
+#### JsReadablePartial
 
 `play.api.libs.json.JsReadable` has an `as` method which can throw. Use `JsReadable#asOpt` instead.
 
-### LangObject
+#### LangObject
 
 The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
@@ -133,6 +138,10 @@ In all three cases you should declare a dependency on `play.api.Application` ins
 `play.api.libs.ws.WS` relies on global state. Declare a dependency on `play.api.libs.ws.WSApi` instead.
 See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
+#### TestHelpersObject
+
+The two variants of `play.api.test.Helpers#route` that don't accept a `play.api.Application` parameter rely on the global `play.api.Play#current`. Use one of the variants that accepts a `play.api.Application` parameter instead.
+
 ### Slick
 
 #### BasicStreamingActionPartial
@@ -140,6 +149,17 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 `slick.profile.BasicStreamingAction` has a `head` method which will fail if the stream is empty (i.e. if the `SELECT` SQL query returned zero rows). Use `headOption` instead.
 
 ### Bonus Warts
+
+#### DateFormatPartial
+
+`java.text.DateFormat#parse` is disabled because it can throw a `ParseException`. You can wrap it in an implicit that might look like this:
+
+```scala
+implicit class DateFormatWrapper(dateFormat: DateFormat) {
+  @SuppressWarnings(Array("org.danielnixon.playwarts.DateFormatPartial"))
+  def parseOpt(source: String): Option[Date] = nonFatalCatch[Date] opt dateFormat.parse(source)
+}
+```
 
 #### FutureObject
 
@@ -168,6 +188,10 @@ all of which will throw if the list is empty. The program should be refactored t
 * `GenTraversableLike#lastOption` respectively,
 
 to explicitly handle both populated and empty `GenTraversableLike`s.
+
+#### OptionPartial
+
+`scala.Option.orNull` is disabled.
 
 #### StringOpsPartial
 
