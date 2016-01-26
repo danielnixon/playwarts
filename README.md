@@ -84,7 +84,7 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 #### DBObject
 
 The `play.api.db.DB` object relies on global state. Declare a dependency on `play.api.db.DBApi` or `play.api.db.Database` instead.
-See [Migration24#Dependency-Injected-Components](https://www.playApiframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
+See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
 #### FlashPartial
 
