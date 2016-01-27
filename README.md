@@ -86,6 +86,8 @@ See [Migration24#Dependency-Injected-Components](https://www.playframework.com/d
 The `play.api.db.DB` object relies on global state. Declare a dependency on `play.api.db.DBApi` or `play.api.db.Database` instead.
 See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
 
+Enable this wart only if you use [Play's database plug-in](https://www.playframework.com/documentation/2.4.x/ScalaDatabase#Configuring-JDBC-connection-pools) (i.e. you depend on `jdbc`).
+
 #### FlashPartial
 
 `play.api.mvc.Flash` has an `apply` method that can throw. Use `Flash#get` instead.
