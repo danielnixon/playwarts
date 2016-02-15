@@ -54,8 +54,7 @@
       Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
       Wart.custom("org.danielnixon.playwarts.OptionPartial"),
       Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
-      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"),
-      Wart.custom("org.danielnixon.playwarts.TryPartial"))
+      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
     ```
 
 ## Warts
@@ -240,7 +239,3 @@ implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
   }
 }
 ```
-
-#### TryPartial
-
-`scala.util.Try` has a `get` method which will throw if the Try failed. Use `Try#getOrElse` instead.
