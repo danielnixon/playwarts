@@ -13,7 +13,7 @@
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.12"
+    val playwartsVersion = "0.13"
 
     libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
     
@@ -34,6 +34,7 @@
       Wart.custom("org.danielnixon.playwarts.JsReadablePartial"),
       Wart.custom("org.danielnixon.playwarts.LangObject"),
       Wart.custom("org.danielnixon.playwarts.MessagesObject"),
+      Wart.custom("org.danielnixon.playwarts.PlayGlobalExecutionContext"),
       Wart.custom("org.danielnixon.playwarts.PlayObject"),
       Wart.custom("org.danielnixon.playwarts.SessionPartial"),
       Wart.custom("org.danielnixon.playwarts.WSObject"))
@@ -53,6 +54,7 @@
       Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
       Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
       Wart.custom("org.danielnixon.playwarts.OptionPartial"),
+      Wart.custom("org.danielnixon.playwarts.ScalaGlobalExecutionContext"),
       Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
       Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
     ```
@@ -130,6 +132,10 @@ The following methods on the `play.api.Play` object are disabled:
 
 In all three cases you should declare a dependency on `play.api.Application` instead.
 
+#### PlayGlobalExecutionContext
+
+Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead.
+
 #### SessionPartial
 
 `play.api.mvc.Session` has an `apply` method that can throw. Use `Session#get` instead.
@@ -193,6 +199,10 @@ to explicitly handle both populated and empty `GenTraversableLike`s.
 #### OptionPartial
 
 `scala.Option.orNull` is disabled.
+
+#### ScalaGlobalExecutionContext
+
+Scala's global execution context `scala.concurrent.ExecutionContext#global` is disabled. Declare a dependency on an `ExecutionContext` instead.
 
 #### StringOpsPartial
 
