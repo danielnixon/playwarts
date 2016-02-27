@@ -11,10 +11,12 @@
 
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `plugins.sbt`:
+
     ```scala
     addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.15")
     ```
-2. Add the following to your `build.sbt`:
+
+3. Add the following to your `build.sbt`:
     ```scala
     // Play Framework
     wartremoverWarnings ++= Seq(
