@@ -1,14 +1,18 @@
-name := "playwarts"
-
-version := "0.14-SNAPSHOT"
-
-organization := "org.danielnixon"
-
-licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
-
-homepage := Some(url("https://github.com/danielnixon/playwarts"))
-
-pomExtra := (
+lazy val commonSettings = Seq(
+  organization := "org.danielnixon",
+  licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
+  version := "0.15",
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  },
+  homepage := Some(url("https://github.com/danielnixon/playwarts")),
+  pomExtra := (
   <scm>
     <url>git@github.com:danielnixon/playwarts.git</url>
     <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
@@ -20,49 +24,74 @@ pomExtra := (
       <url>https://danielnixon.org/</url>
     </developer>
   </developers>)
-
-publishMavenStyle := true
-
-publishArtifact in Test := false
-
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
-
-scalaVersion := "2.11.7"
-
-coverageMinimum := 90
-coverageFailOnMinimum := true
-
-scalacOptions ++= Seq(
-  "-deprecation",
-  "-feature",
-  "-unchecked",
-  "-Xfatal-warnings",
-  "-Xlint:_",
-  "-Ywarn-dead-code",
-  "-Ywarn-inaccessible",
-  "-Ywarn-unused",
-  "-Ywarn-unused-import",
-  "-Ywarn-numeric-widen",
-  "-Ywarn-nullary-override")
-
-resolvers += Resolver.sonatypeRepo("releases")
+)
 
 val playVersion = "2.4.6"
+val wartremoverVersion = "0.14"
+val scalatestVersion = "2.2.6"
 
-libraryDependencies ++= Seq(
-  "org.brianmckenna" %% "wartremover" % "0.14",
-  "org.scalatest" %% "scalatest" % "2.2.6" % Test,
-  "com.typesafe.play" %% "play" % playVersion % Test,
-  "com.typesafe.play" %% "play-test" % playVersion % Test,
-  "com.typesafe.play" %% "play-slick" % "1.1.1" % Test,
-  "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
-  "com.typesafe.play" %% "play-ws" % playVersion % Test,
-  "com.typesafe.play" %% "play-cache" % playVersion % Test)
+lazy val root = Project(
+  id = "root",
+  base = file("."),
+  aggregate = Seq(core)
+).settings(commonSettings ++ Seq(
+  publishArtifact := false,
+  scalaVersion := "2.11.7"
+): _*)
 
-exportJars := true
+lazy val core = Project(
+  id = "core",
+  base = file("core"),
+  aggregate = Seq(sbtPlug)
+).settings(commonSettings ++ Seq(
+  name := "playwarts",
+  scalaVersion := "2.11.7",
+  libraryDependencies ++= Seq(
+    "org.brianmckenna" %% "wartremover" % wartremoverVersion,
+    "org.scalatest" %% "scalatest" % scalatestVersion % Test,
+    "com.typesafe.play" %% "play" % playVersion % Test,
+    "com.typesafe.play" %% "play-test" % playVersion % Test,
+    "com.typesafe.play" %% "play-slick" % "1.1.1" % Test,
+    "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
+    "com.typesafe.play" %% "play-ws" % playVersion % Test,
+    "com.typesafe.play" %% "play-cache" % playVersion % Test),
+  dependencyOverrides ++= Set(
+    "org.scalatest" %% "scalatest" % scalatestVersion
+  ),
+  scalacOptions ++= Seq(
+    "-deprecation",
+    "-feature",
+    "-unchecked",
+    "-Xfatal-warnings",
+    "-Xlint:_",
+    "-Ywarn-dead-code",
+    "-Ywarn-inaccessible",
+    "-Ywarn-unused",
+    "-Ywarn-unused-import",
+    "-Ywarn-numeric-widen",
+    "-Ywarn-nullary-override")
+): _*)
+
+lazy val sbtPlug: Project = Project(
+  id = "sbt-plugin",
+  base = file("sbt-plugin")
+).enablePlugins(
+  BuildInfoPlugin
+).settings(commonSettings ++ Seq(
+  buildInfoKeys := Seq[BuildInfoKey](version),
+  buildInfoPackage := "buildinfo",
+  sbtPlugin := true,
+  name := "sbt-playwarts",
+  scalaVersion := "2.10.6",
+  addSbtPlugin("org.brianmckenna" %% "sbt-wartremover" % wartremoverVersion),
+  scalacOptions ++= Seq(
+    "-deprecation",
+    "-feature",
+    "-unchecked",
+    "-Xfatal-warnings",
+    "-Xlint",
+    "-Ywarn-dead-code",
+    "-Ywarn-inaccessible",
+    "-Ywarn-numeric-widen",
+    "-Ywarn-nullary-override")
+): _*)

@@ -1,7 +1,6 @@
 # PlayWarts
 
 [![Build Status](https://travis-ci.org/danielnixon/playwarts.svg?branch=master)](https://travis-ci.org/danielnixon/playwarts)
-[![Coverage Status](https://coveralls.io/repos/danielnixon/playwarts/badge.svg?branch=master&service=github)](https://coveralls.io/github/danielnixon/playwarts?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/5418232b54ffbda60b000061/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5418232b54ffbda60b000061)
 [![Codacy Badge](https://api.codacy.com/project/badge/f641de970f1f4a98a1900ee38250bb7d)](https://www.codacy.com/app/danielnixon/playwarts)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11)
@@ -11,52 +10,50 @@
 ## Usage
 
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
+2. Add the following to your `plugins.sbt`:
+    ```scala
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.15")
+    ```
 2. Add the following to your `build.sbt`:
     ```scala
-    val playwartsVersion = "0.13"
-
-    libraryDependencies += "org.danielnixon" %% "playwarts" % playwartsVersion
-    
-    wartremoverClasspaths += s"file:${Path.userHome.absolutePath}/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$playwartsVersion.jar"
-    
     // Play Framework
     wartremoverWarnings ++= Seq(
-      Wart.custom("org.danielnixon.playwarts.AkkaObject"),
-      Wart.custom("org.danielnixon.playwarts.CacheObject"),
-      Wart.custom("org.danielnixon.playwarts.CookiesPartial"),
-      Wart.custom("org.danielnixon.playwarts.CryptoObject"),
-      Wart.custom("org.danielnixon.playwarts.DBObject"),
-      Wart.custom("org.danielnixon.playwarts.FlashPartial"),
-      Wart.custom("org.danielnixon.playwarts.FormPartial"),
-      Wart.custom("org.danielnixon.playwarts.GlobalSettings"),
-      Wart.custom("org.danielnixon.playwarts.HeadersPartial"),
-      Wart.custom("org.danielnixon.playwarts.JsLookupResultPartial"),
-      Wart.custom("org.danielnixon.playwarts.JsReadablePartial"),
-      Wart.custom("org.danielnixon.playwarts.LangObject"),
-      Wart.custom("org.danielnixon.playwarts.MessagesObject"),
-      Wart.custom("org.danielnixon.playwarts.PlayGlobalExecutionContext"),
-      Wart.custom("org.danielnixon.playwarts.PlayObject"),
-      Wart.custom("org.danielnixon.playwarts.SessionPartial"),
-      Wart.custom("org.danielnixon.playwarts.WSObject"))
+      PlayWart.AkkaObject,
+      PlayWart.CacheObject,
+      PlayWart.CookiesPartial,
+      PlayWart.CryptoObject,
+      PlayWart.DBObject,
+      PlayWart.FlashPartial,
+      PlayWart.FormPartial,
+      PlayWart.GlobalSettings,
+      PlayWart.HeadersPartial,
+      PlayWart.JsLookupResultPartial,
+      PlayWart.JsReadablePartial,
+      PlayWart.LangObject,
+      PlayWart.MessagesObject,
+      PlayWart.PlayGlobalExecutionContext,
+      PlayWart.PlayObject,
+      PlayWart.SessionPartial,
+      PlayWart.WSObject)
 
     wartremoverWarnings in Test ++= Seq(
-      Wart.custom("org.danielnixon.playwarts.TestHelpersObject"))
+      PlayWart.TestHelpersObject)
 
     // Slick
     wartremoverWarnings ++= Seq(
-      Wart.custom("org.danielnixon.playwarts.BasicStreamingActionPartial"))
+      PlayWart.BasicStreamingActionPartial)
 
     // Bonus Warts
     wartremoverWarnings ++= Seq(
-      Wart.custom("org.danielnixon.playwarts.DateFormatPartial"),
-      Wart.custom("org.danielnixon.playwarts.FutureObject"),
-      Wart.custom("org.danielnixon.playwarts.GenMapLikePartial"),
-      Wart.custom("org.danielnixon.playwarts.GenTraversableLikeOps"),
-      Wart.custom("org.danielnixon.playwarts.GenTraversableOnceOps"),
-      Wart.custom("org.danielnixon.playwarts.OptionPartial"),
-      Wart.custom("org.danielnixon.playwarts.ScalaGlobalExecutionContext"),
-      Wart.custom("org.danielnixon.playwarts.StringOpsPartial"),
-      Wart.custom("org.danielnixon.playwarts.TraversableOnceOps"))
+      PlayWart.DateFormatPartial,
+      PlayWart.FutureObject,
+      PlayWart.GenMapLikePartial,
+      PlayWart.GenTraversableLikeOps,
+      PlayWart.GenTraversableOnceOps,
+      PlayWart.OptionPartial,
+      PlayWart.ScalaGlobalExecutionContext,
+      PlayWart.StringOpsPartial,
+      PlayWart.TraversableOnceOps)
     ```
 
 ## Warts

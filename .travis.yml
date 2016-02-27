@@ -2,5 +2,4 @@ language: scala
 sudo: false
 scala: 2.11.7
 jdk: oraclejdk8
-script: sbt coverage test
-after_success: ln -s ./src/main/scala/org ./org && sbt coveralls
+script: sbt test
