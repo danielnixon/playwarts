@@ -23,7 +23,9 @@ lazy val commonSettings = Seq(
       <name>Daniel Nixon</name>
       <url>https://danielnixon.org/</url>
     </developer>
-  </developers>)
+  </developers>),
+  coverageMinimum := 90,
+  coverageFailOnMinimum := true
 )
 
 val playVersion = "2.4.6"
@@ -33,7 +35,7 @@ val scalatestVersion = "2.2.6"
 lazy val root = Project(
   id = "root",
   base = file("."),
-  aggregate = Seq(core)
+  aggregate = Seq(core, sbtPlug)
 ).settings(commonSettings ++ Seq(
   publishArtifact := false,
   scalaVersion := "2.11.7"
@@ -41,8 +43,7 @@ lazy val root = Project(
 
 lazy val core = Project(
   id = "core",
-  base = file("core"),
-  aggregate = Seq(sbtPlug)
+  base = file("core")
 ).settings(commonSettings ++ Seq(
   name := "playwarts",
   scalaVersion := "2.11.7",
@@ -77,6 +78,8 @@ lazy val sbtPlug: Project = Project(
   base = file("sbt-plugin")
 ).enablePlugins(
   BuildInfoPlugin
+).disablePlugins(
+  ScoverageSbtPlugin
 ).settings(commonSettings ++ Seq(
   buildInfoKeys := Seq[BuildInfoKey](version),
   buildInfoPackage := "buildinfo",
@@ -95,3 +98,6 @@ lazy val sbtPlug: Project = Project(
     "-Ywarn-numeric-widen",
     "-Ywarn-nullary-override")
 ): _*)
+
+addCommandAlias("publishLocalCoverageOff", ";clean;coverageOff;compile;test;publishLocal")
+addCommandAlias("publishSignedCoverageOff", ";clean;coverageOff;compile;test;publishSigned")
