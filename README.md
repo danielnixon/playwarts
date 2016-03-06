@@ -67,31 +67,9 @@
 
 ### Play Framework
 
-#### AkkaObject
-
-`play.api.libs.concurrent.Akka` is no longer needed. Declare a dependency on `ActorSystem` instead.
-See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
-
-#### CacheObject
-
-`play.api.cache.Cache` relies on global state. Declare a dependency on `play.api.cache.CacheApi` instead.
-See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
-
 #### CookiesPartial
 
 `play.api.mvc.Cookies` has an `apply` method that can throw. Use `Cookies#get` instead.
-
-#### CryptoObject
-
-The `play.api.libs.Crypto` object relies on global state. Declare a dependency on the `play.api.libs.Crypto` class instead.
-See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
-
-#### DBObject
-
-The `play.api.db.DB` object relies on global state. Declare a dependency on `play.api.db.DBApi` or `play.api.db.Database` instead.
-See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
-
-Enable this wart only if you use [Play's database plug-in](https://www.playframework.com/documentation/2.4.x/ScalaDatabase#Configuring-JDBC-connection-pools) (i.e. you depend on `jdbc`).
 
 #### FlashPartial
 
@@ -102,10 +80,6 @@ Enable this wart only if you use [Play's database plug-in](https://www.playframe
 `play.api.data.Form` has a `get` method which will throw if the form contains
 errors. The program should be refactored to use `play.api.data.Form#fold` to
 explicitly handle forms with errors and successful form submissions.
-
-#### GlobalSettings
-
-`GlobalSettings` relies on global state. See [Migration24#GlobalSettings](https://playframework.com/documentation/2.4.x/Migration24#GlobalSettings).
 
 #### HeadersPartial
 
@@ -127,15 +101,6 @@ The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
 `play.api.i18n.Messages.Implicits` exists to allow you to continue to use static controller objects in Play 2.4.x. Use controller classes with dependency injection instead. See [Migration24#I18n](https://www.playframework.com/documentation/2.4.x/Migration24#I18n).
 
-#### PlayObject
-
-The following methods on the `play.api.Play` object are disabled:
-* `Play#maybeApplication`: Relies on global state.
-* `Play#current`: Relies on global state, throws a `RuntimeException` if no current application.
-* `Play#unsafeApplication`: Relies on global state, returns `null` if no current application.
-
-In all three cases you should declare a dependency on `play.api.Application` instead.
-
 #### PlayGlobalExecutionContext
 
 Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead.
@@ -143,15 +108,6 @@ Play's global execution context `play.api.libs.concurrent.Execution#defaultConte
 #### SessionPartial
 
 `play.api.mvc.Session` has an `apply` method that can throw. Use `Session#get` instead.
-
-#### WSObject
-
-`play.api.libs.ws.WS` relies on global state. Declare a dependency on `play.api.libs.ws.WSApi` instead.
-See [Migration24#Dependency-Injected-Components](https://www.playframework.com/documentation/2.4.x/Migration24#Dependency-Injected-Components).
-
-#### TestHelpersObject
-
-The two variants of `play.api.test.Helpers#route` that don't accept a `play.api.Application` parameter rely on the global `play.api.Play#current`. Use one of the variants that accepts a `play.api.Application` parameter instead.
 
 ### Slick
 
