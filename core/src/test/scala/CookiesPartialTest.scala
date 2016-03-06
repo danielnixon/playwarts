@@ -9,7 +9,7 @@ class CookiesPartialTest extends FunSuite {
     override def foreach[U](f: (Cookie) => U): Unit = Unit
   }
 
-  test("can't use Cookies#get") {
+  test("can't use Cookies#apply") {
     val result = WartTestTraverser(CookiesPartial) {
       val foo = cookies("foo")
     }

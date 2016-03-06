@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 import play.api.mvc.Headers
 
 class HeadersPartialTest extends FunSuite {
-  test("can't use Headers#get") {
+  test("can't use Headers#apply") {
     val result = WartTestTraverser(HeadersPartial) {
       val foo = Headers()("foo")
     }

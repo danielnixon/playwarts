@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 import play.api.mvc.Flash
 
 class FlashPartialTest extends FunSuite {
-  test("can't use Flash#get") {
+  test("can't use Flash#apply") {
     val result = WartTestTraverser(FlashPartial) {
       val foo = Flash()("foo")
     }

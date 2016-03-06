@@ -1,3 +1,4 @@
+import akka.stream.Materializer
 import play.api.Application
 
 object FakeApp {
@@ -19,7 +20,7 @@ object FakeApp {
 
       override def configuration = ???
 
-      override def plugins = ???
+      override implicit def materializer: Materializer = ???
     }
   }
 }

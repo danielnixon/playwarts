@@ -28,7 +28,7 @@ lazy val commonSettings = Seq(
   coverageFailOnMinimum := true
 )
 
-val playVersion = "2.4.6"
+val playVersion = "2.5.0"
 val wartremoverVersion = "0.14"
 val scalatestVersion = "2.2.6"
 
@@ -52,8 +52,7 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "1.1.1" % Test,
-    "com.typesafe.play" %% "play-jdbc" % playVersion % Test,
+    "com.typesafe.play" %% "play-slick" % "2.0.0" % Test,
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test),
   dependencyOverrides ++= Set(

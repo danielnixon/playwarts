@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 import play.api.mvc.Session
 
 class SessionPartialTest extends FunSuite {
-  test("can't use Session#get") {
+  test("can't use Session#apply") {
     val result = WartTestTraverser(SessionPartial) {
       val foo = Session()("foo")
     }
