@@ -7,39 +7,36 @@
 
 [WartRemover](https://github.com/typelevel/wartremover) warts for [Play Framework](https://www.playframework.com/) and [Slick](http://slick.typesafe.com/) (and some bonus warts).
 
+## Versions
+
+| PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
+|-------------------|---------------------|--------------------|---------------------|---------------|
+| 0.16              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
+| 0.15              | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
+
 ## Usage
 
 1. Setup [WartRemover](https://github.com/typelevel/wartremover).
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.15")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.16")
     ```
 
 3. Add the following to your `build.sbt`:
     ```scala
     // Play Framework
     wartremoverWarnings ++= Seq(
-      PlayWart.AkkaObject,
-      PlayWart.CacheObject,
       PlayWart.CookiesPartial,
-      PlayWart.CryptoObject,
-      PlayWart.DBObject,
       PlayWart.FlashPartial,
       PlayWart.FormPartial,
-      PlayWart.GlobalSettings,
       PlayWart.HeadersPartial,
       PlayWart.JsLookupResultPartial,
       PlayWart.JsReadablePartial,
       PlayWart.LangObject,
       PlayWart.MessagesObject,
       PlayWart.PlayGlobalExecutionContext,
-      PlayWart.PlayObject,
-      PlayWart.SessionPartial,
-      PlayWart.WSObject)
-
-    wartremoverWarnings in Test ++= Seq(
-      PlayWart.TestHelpersObject)
+      PlayWart.SessionPartial)
 
     // Slick
     wartremoverWarnings ++= Seq(
