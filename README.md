@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
 |-------------------|---------------------|--------------------|---------------------|---------------|
-| 0.16              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
+| 0.17              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
 | 0.15              | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
 
 ## Usage
@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.16")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.17")
     ```
 
 3. Add the following to your `build.sbt`:
@@ -31,6 +31,7 @@
       PlayWart.FlashPartial,
       PlayWart.FormPartial,
       PlayWart.HeadersPartial,
+      PlayWart.JavaApi,
       PlayWart.JsLookupResultPartial,
       PlayWart.JsReadablePartial,
       PlayWart.LangObject,
@@ -84,6 +85,10 @@ explicitly handle forms with errors and successful form submissions.
 #### HeadersPartial
 
 `play.api.mvc.Headers` has an `apply` method that can throw. Use `Headers#get` instead.
+
+#### JavaApi
+
+The Java API in the `play` package is disabled. Use the Scala API under `play.api` instead.
 
 #### JsLookupResultPartial
 
