@@ -13,10 +13,9 @@ abstract class ObjectWart(targetObjectName: String, errorMessage: String) extend
         tree match {
           // Ignore trees marked by SuppressWarnings
           case t if hasWartAnnotation(u)(t) =>
-          case Select(tpt, _) if tpt.tpe.contains(symbol) => {
+          case Select(tpt, _) if tpt.tpe.contains(symbol) =>
             u.error(tree.pos, errorMessage)
             super.traverse(tree)
-          }
           case _ => super.traverse(tree)
         }
       }

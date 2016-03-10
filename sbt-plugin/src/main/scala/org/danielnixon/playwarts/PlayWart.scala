@@ -7,6 +7,7 @@ object PlayWart {
   val FlashPartial = wart("FlashPartial")
   val FormPartial = wart("FormPartial")
   val HeadersPartial = wart("HeadersPartial")
+  val JavaApi = wart("JavaApi")
   val JsLookupResultPartial = wart("JsLookupResultPartial")
   val JsReadablePartial = wart("JsReadablePartial")
   val LangObject = wart("LangObject")
