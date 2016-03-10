@@ -38,7 +38,7 @@ lazy val root = Project(
   aggregate = Seq(core, sbtPlug)
 ).settings(commonSettings ++ Seq(
   publishArtifact := false,
-  scalaVersion := "2.11.7"
+  scalaVersion := "2.11.8"
 ): _*)
 
 lazy val core = Project(
@@ -46,7 +46,7 @@ lazy val core = Project(
   base = file("core")
 ).settings(commonSettings ++ Seq(
   name := "playwarts",
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.11.8",
   libraryDependencies ++= Seq(
     "org.brianmckenna" %% "wartremover" % wartremoverVersion,
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
