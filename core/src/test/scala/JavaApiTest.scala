@@ -8,7 +8,6 @@ import org.scalatest.FunSuite
 import play.api
 import play.api.{ApplicationLoader, Application}
 import play.api.http.{HttpErrorHandler, HttpRequestHandler}
-import play.api.Mode.Mode
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
@@ -113,7 +112,7 @@ class JavaApiTest extends FunSuite {
 
         override def classloader: ClassLoader = ???
 
-        override def mode: Mode = ???
+        override def mode: play.api.Mode.Mode = ???
 
         override def configuration: api.Configuration = ???
 

@@ -24,6 +24,7 @@ object PlayWart {
   val ScalaGlobalExecutionContext = wart("ScalaGlobalExecutionContext")
   val StringOpsPartial = wart("StringOpsPartial")
   val TraversableOnceOps = wart("TraversableOnceOps")
+  val UntypedEquality = wart("UntypedEquality")
 
   private def wart(name: String) = {
     Wart.custom(s"org.danielnixon.playwarts.$name")
