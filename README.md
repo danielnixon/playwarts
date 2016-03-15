@@ -227,4 +227,4 @@ implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
 * `eq`
 * `ne`
 
-All of which are disabled. Use a typesafe alternative instead.
+All of which are disabled. Use a typesafe alternative (such as [Scalaz's Equal typeclass](http://eed3si9n.com/learning-scalaz/Equal.html) or [Heiko Seeberger's solution](http://hseeberger.github.io/blog/2013/05/30/implicits-unchained-type-safe-equality-part1/)) instead.
