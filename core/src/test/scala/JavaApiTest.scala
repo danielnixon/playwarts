@@ -6,7 +6,7 @@ import org.brianmckenna.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.JavaApi
 import org.scalatest.FunSuite
 import play.api
-import play.api.{ApplicationLoader, Application}
+import play.api.{Application, ApplicationLoader}
 import play.api.http.{HttpErrorHandler, HttpRequestHandler}
 
 import scala.concurrent.Future
@@ -32,6 +32,22 @@ class JavaApiTest extends FunSuite {
 
         override def remove(key: String): Unit = ???
       }
+    }
+    assertResult(List.empty, "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
+  }
+
+  test("can't use play.db package") {
+    val result = WartTestTraverser(JavaApi) {
+      val foo = new play.db.NamedDatabaseImpl("")
+    }
+    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
+  }
+
+  test("can use play.api.db package") {
+    val result = WartTestTraverser(JavaApi) {
+      val foo = new play.api.db.slick.DefaultSlickApi(null, null, null)
     }
     assertResult(List.empty, "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)

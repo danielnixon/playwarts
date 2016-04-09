@@ -2,11 +2,17 @@ package org.danielnixon.playwarts
 
 import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
 
+import scala.util.control.Exception.catching
+
 abstract class PackageWart(targetPackage: String, errorMessage: String, packages: Set[String], classes: Set[String]) extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {
     import u.universe._
 
-    val packageSymbols = packages.map(p => rootMirror.staticPackage(s"$targetPackage.$p"))
+    val packageSymbols = packages flatMap { p =>
+      catching(classOf[ScalaReflectionException]) opt {
+        rootMirror.staticPackage(s"$targetPackage.$p")
+      }
+    }
     val classSymbols = classes.map(c => rootMirror.staticClass(s"$targetPackage.$c"))
     val objectSymbols = classes.map(c => rootMirror.staticModule(s"$targetPackage.$c"))
 
