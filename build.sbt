@@ -28,7 +28,7 @@ lazy val commonSettings = Seq(
   coverageFailOnMinimum := true
 )
 
-val playVersion = "2.5.0"
+val playVersion = "2.5.1"
 val wartremoverVersion = "0.14"
 val scalatestVersion = "2.2.6"
 
