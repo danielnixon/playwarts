@@ -128,7 +128,7 @@ Play's global execution context `play.api.libs.concurrent.Execution#defaultConte
 `java.text.DateFormat#parse` is disabled because it can throw a `ParseException`. You can wrap it in an implicit that might look like this:
 
 ```scala
-implicit class DateFormatWrapper(dateFormat: DateFormat) {
+implicit class DateFormatWrapper(val dateFormat: DateFormat) extends AnyVal {
   @SuppressWarnings(Array("org.danielnixon.playwarts.DateFormatPartial"))
   def parseOpt(source: String): Option[Date] = nonFatalCatch[Date] opt dateFormat.parse(source)
 }
@@ -186,7 +186,7 @@ all of which will throw `NumberFormatException` (or `IllegalArgumentException` i
 You can hide these unsafe `StringOps` methods with an implicit class that might look something like this:
 
 ```scala
-implicit class StringWrapper(value: String) {
+implicit class StringWrapper(val value: String) extends AnyVal {
   import scala.util.control.Exception.catching
 
   @SuppressWarnings(Array("org.danielnixon.playwarts.StringOpsPartial"))
@@ -208,7 +208,7 @@ implicit class StringWrapper(value: String) {
 all of which will throw `UnsupportedOperationException` if the collection is empty. You can wrap these unsafe methods in an implicit class that might look something like this:
 
 ```scala
-implicit class TraversableOnceWrapper[A](traversable: TraversableOnce[A]) {
+implicit class TraversableOnceWrapper[A](val traversable: TraversableOnce[A]) extends AnyVal {
   @SuppressWarnings(Array("org.danielnixon.playwarts.TraversableOnceOps"))
   def maxOpt[B >: A](implicit cmp: Ordering[B]): Option[A] = {
     if (traversable.isEmpty) None else Some(traversable.max(cmp))
