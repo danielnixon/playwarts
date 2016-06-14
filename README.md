@@ -12,7 +12,7 @@
 | PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
 |-------------------|---------------------|--------------------|---------------------|---------------|
 | 0.22              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
-| 0.15              | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
+| 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
 
 ## Usage
 
