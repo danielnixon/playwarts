@@ -25,6 +25,7 @@ object PlayWart {
   val StringOpsPartial = wart("StringOpsPartial")
   val TraversableOnceOps = wart("TraversableOnceOps")
   val UntypedEquality = wart("UntypedEquality")
+  val WSResponsePartial = wart("WSResponsePartial")
 
   private def wart(name: String) = {
     Wart.custom(s"org.danielnixon.playwarts.$name")
