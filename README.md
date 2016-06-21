@@ -122,10 +122,10 @@ The `play.api.libs.ws.WSResponse` trait defines `json` and `xml` methods that wi
 
 ```scala
 implicit class WSResponseWrapper(val response: WSResponse) extends AnyVal {
-  @SuppressWarnings(Array(Wart.WSResponsePartial))
+  @SuppressWarnings(Array("org.danielnixon.playwarts.WSResponsePartial"))
   def jsonOpt: Option[JsValue] = catching[JsValue](classOf[JsonParseException]) opt response.json
 
-  @SuppressWarnings(Array(Wart.WSResponsePartial))
+  @SuppressWarnings(Array("org.danielnixon.playwarts.WSResponsePartial"))
   def xmlOpt: Option[Elem] = catching[Elem](classOf[SAXException]) opt response.xml
 }
 ```
