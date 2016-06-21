@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
 |-------------------|---------------------|--------------------|---------------------|---------------|
-| 0.22              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
+| 0.23              | 0.14                | 2.5.x              | 2.0.x               | 2.11.x        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
 
 ## Usage
@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.22")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.23")
     ```
 
 3. Add the following to your `build.sbt`:
@@ -37,7 +37,8 @@
       PlayWart.LangObject,
       PlayWart.MessagesObject,
       PlayWart.PlayGlobalExecutionContext,
-      PlayWart.SessionPartial)
+      PlayWart.SessionPartial,
+      PlayWart.WSResponsePartial)
 
     // Slick
     wartremoverWarnings ++= Seq(
@@ -114,6 +115,20 @@ Play's global execution context `play.api.libs.concurrent.Execution#defaultConte
 #### SessionPartial
 
 `play.api.mvc.Session` has an `apply` method that can throw. Use `Session#get` instead.
+
+#### WSResponsePartial
+
+The `play.api.libs.ws.WSResponse` trait defines `json` and `xml` methods that will throw if the response body can't be parsed as JSON or XML respectively (the default `AhcWSResponse` implementation of this trait throws `JsonParseException` and `SAXException`). You can wrap these unsafe methods in an implicit class that might look something like this:
+
+```scala
+implicit class WSResponseWrapper(val response: WSResponse) extends AnyVal {
+  @SuppressWarnings(Array(Wart.WSResponsePartial))
+  def jsonOpt: Option[JsValue] = catching[JsValue](classOf[JsonParseException]) opt response.json
+
+  @SuppressWarnings(Array(Wart.WSResponsePartial))
+  def xmlOpt: Option[Elem] = catching[Elem](classOf[SAXException]) opt response.xml
+}
+```
 
 ### Slick
 
