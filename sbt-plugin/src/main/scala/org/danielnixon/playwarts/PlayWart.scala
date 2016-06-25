@@ -3,6 +3,7 @@ package org.danielnixon.playwarts
 import wartremover.Wart
 
 object PlayWart {
+  val AssetsObject = wart("AssetsObject")
   val CookiesPartial = wart("CookiesPartial")
   val FlashPartial = wart("FlashPartial")
   val FormPartial = wart("FormPartial")
