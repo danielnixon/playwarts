@@ -1,7 +1,7 @@
 lazy val commonSettings = Seq(
   organization := "org.danielnixon",
   licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
-  version := "0.24",
+  version := "0.25-SNAPSHOT",
   publishMavenStyle := true,
   publishArtifact in Test := false,
   publishTo := {
