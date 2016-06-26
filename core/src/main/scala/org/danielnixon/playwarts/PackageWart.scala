@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
+import org.wartremover.{WartTraverser, WartUniverse}
 
 import scala.util.control.Exception.catching
 

@@ -1,5 +1,5 @@
 import akka.util.ByteString
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.WSResponsePartial
 import org.scalatest.FunSuite
 import play.api.libs.json.JsValue

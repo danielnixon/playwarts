@@ -29,7 +29,7 @@ lazy val commonSettings = Seq(
 )
 
 val playVersion = "2.5.1"
-val wartremoverVersion = "0.14"
+val wartremoverVersion = "1.0.0"
 val scalatestVersion = "2.2.6"
 
 lazy val root = Project(
@@ -48,7 +48,7 @@ lazy val core = Project(
   name := "playwarts",
   scalaVersion := "2.11.8",
   libraryDependencies ++= Seq(
-    "org.brianmckenna" %% "wartremover" % wartremoverVersion,
+    "org.wartremover" %% "wartremover" % wartremoverVersion,
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
@@ -85,7 +85,7 @@ lazy val sbtPlug: Project = Project(
   sbtPlugin := true,
   name := "sbt-playwarts",
   scalaVersion := "2.10.6",
-  addSbtPlugin("org.brianmckenna" %% "sbt-wartremover" % wartremoverVersion),
+  addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",

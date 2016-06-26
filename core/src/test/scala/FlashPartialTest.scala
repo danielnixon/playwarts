@@ -1,4 +1,4 @@
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.FlashPartial
 import org.scalatest.FunSuite
 import play.api.mvc.Flash

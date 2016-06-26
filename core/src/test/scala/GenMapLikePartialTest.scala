@@ -1,4 +1,4 @@
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.GenMapLikePartial
 import org.scalatest.FunSuite
 

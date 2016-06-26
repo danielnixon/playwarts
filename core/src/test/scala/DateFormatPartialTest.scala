@@ -1,6 +1,6 @@
 import java.text.SimpleDateFormat
 
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.DateFormatPartial
 import org.scalatest.FunSuite
 

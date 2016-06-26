@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
+import org.wartremover.{WartTraverser, WartUniverse}
 
 abstract class ClassMultiWart(
   wartClassName: String,

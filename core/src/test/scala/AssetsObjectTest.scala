@@ -1,4 +1,4 @@
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.AssetsObject
 import org.scalatest.FunSuite
 import play.api.http.HttpErrorHandler

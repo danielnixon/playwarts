@@ -1,4 +1,4 @@
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.{BasicStreamingActionPartial => BasicStreamingActionWart}
 import org.scalatest.FunSuite
 import slick.dbio.Effect.All

@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-import org.brianmckenna.wartremover.{WartTraverser, WartUniverse}
+import org.wartremover.{WartTraverser, WartUniverse}
 
 abstract class ObjectWart(targetObjectName: String, errorMessage: String) extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {

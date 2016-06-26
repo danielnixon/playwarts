@@ -2,7 +2,7 @@ import java.io.File
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
-import org.brianmckenna.wartremover.test.WartTestTraverser
+import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.JavaApi
 import org.scalatest.FunSuite
 import play.api
