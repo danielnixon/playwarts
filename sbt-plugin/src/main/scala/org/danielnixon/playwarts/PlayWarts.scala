@@ -19,7 +19,7 @@ object PlayWarts extends AutoPlugin {
   override def requires = WartRemover
 
   override lazy val projectSettings = Seq(
-    libraryDependencies += "org.danielnixon" % "playwarts_2.11" % version,
+    libraryDependencies += "org.danielnixon" % "playwarts_2.11" % version % Provided,
     wartremoverClasspaths ++= Seq(
       s"file:$home/.ivy2/local/org.danielnixon/playwarts_2.11/$version/jars/playwarts_2.11.jar",
       s"file:$home/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$version.jar"
