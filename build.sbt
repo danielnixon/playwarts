@@ -29,7 +29,7 @@ lazy val commonSettings = Seq(
 )
 
 val playVersion = "2.5.4"
-val wartremoverVersion = "1.0.0"
+val wartremoverVersion = "1.0.1"
 val scalatestVersion = "2.2.6"
 
 lazy val root = Project(
