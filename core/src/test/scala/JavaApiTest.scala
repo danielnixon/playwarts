@@ -99,6 +99,22 @@ class JavaApiTest extends FunSuite {
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
+  test("can't use play.libs.mailer package") {
+    val result = WartTestTraverser(JavaApi) {
+      val foo = new play.libs.mailer.Attachment("", new File(""))
+    }
+    assertResult(List("The Java API is disabled - use the Scala API", "The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
+  }
+
+  test("can use play.api.libs package") {
+    val result = WartTestTraverser(JavaApi) {
+      val foo = new play.api.libs.mailer.AttachmentFile("", new File(""))
+    }
+    assertResult(List.empty, "result.errors")(result.errors)
+    assertResult(List.empty, "result.warnings")(result.warnings)
+  }
+
   test("can't use play.Application class") {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.Application {
