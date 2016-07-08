@@ -15,18 +15,21 @@ object PlayWart {
   val MessagesObject = wart("MessagesObject")
   val PlayGlobalExecutionContext = wart("PlayGlobalExecutionContext")
   val SessionPartial = wart("SessionPartial")
+  val WSResponsePartial = wart("WSResponsePartial")
+
   val BasicStreamingActionPartial = wart("BasicStreamingActionPartial")
+
   val DateFormatPartial = wart("DateFormatPartial")
   val FutureObject = wart("FutureObject")
   val GenMapLikePartial = wart("GenMapLikePartial")
   val GenTraversableLikeOps = wart("GenTraversableLikeOps")
   val GenTraversableOnceOps = wart("GenTraversableOnceOps")
+  val LegacyDateTimeCode = wart("LegacyDateTimeCode")
   val OptionPartial = wart("OptionPartial")
   val ScalaGlobalExecutionContext = wart("ScalaGlobalExecutionContext")
   val StringOpsPartial = wart("StringOpsPartial")
   val TraversableOnceOps = wart("TraversableOnceOps")
   val UntypedEquality = wart("UntypedEquality")
-  val WSResponsePartial = wart("WSResponsePartial")
 
   private def wart(name: String) = {
     Wart.custom(s"org.danielnixon.playwarts.$name")

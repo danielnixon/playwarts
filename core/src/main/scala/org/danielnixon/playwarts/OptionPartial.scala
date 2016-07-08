@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-object OptionPartial extends ClassWart(
+object OptionPartial extends ClassMethodWart(
   "scala.Option",
   "orNull",
   "Option#orNull is disabled")
