@@ -55,6 +55,7 @@ lazy val core = Project(
     "com.typesafe.play" %% "play-slick" % "2.0.2" % Test,
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,
+    "com.typesafe.play" %% "play-specs2" % playVersion % Test,
     "com.typesafe.play" %% "play-mailer" % "5.0.0" % Test
   ),
   dependencyOverrides ++= Set(
