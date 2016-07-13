@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.24")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.25")
     ```
 
 3. Add the following to your `build.sbt`:
