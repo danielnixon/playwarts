@@ -3,7 +3,7 @@ package org.danielnixon.playwarts
 import sbt._
 import sbt.Keys._
 import wartremover.WartRemover
-import wartremover.WartRemover.autoImport.wartremoverClasspaths
+import wartremover.WartRemover.autoImport.{wartremoverClasspaths, wartremoverExcluded}
 
 object PlayWarts extends AutoPlugin {
 
@@ -22,7 +22,11 @@ object PlayWarts extends AutoPlugin {
     libraryDependencies += "org.danielnixon" % "playwarts_2.11" % version % Provided,
     wartremoverClasspaths ++= Seq(
       s"file:$home/.ivy2/local/org.danielnixon/playwarts_2.11/$version/jars/playwarts_2.11.jar",
-      s"file:$home/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$version.jar"
-    )
+      s"file:$home/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$version.jar"),
+    wartremoverExcluded ++= Seq(
+      crossTarget.value / "routes" / "main" / "controllers" / "ReverseRoutes.scala",
+      crossTarget.value / "routes" / "main" / "controllers" / "javascript" / "JavaScriptReverseRoutes.scala",
+      crossTarget.value / "routes" / "main" / "router" / "Routes.scala",
+      crossTarget.value / "routes" / "main" / "router" / "RoutesPrefix.scala")
   )
 }
