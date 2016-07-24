@@ -7,8 +7,6 @@ object UntypedEquality extends WartTraverser {
     import u.universe._
 
     val errorMessage = "Untyped equality is disabled - use a typesafe alternative"
-    val EqEqName = TermName("$eq$eq") // ==
-    val BangEqName = TermName("$bang$eq") // !=
     val EqName = TermName("eq")
     val NeName = TermName("ne")
     val EqualsName = TermName("equals")
@@ -19,8 +17,6 @@ object UntypedEquality extends WartTraverser {
           // Ignore trees marked by SuppressWarnings
           case t if hasWartAnnotation(u)(t) =>
           case t if isSynthetic(u)(t) =>
-          case Select(left, EqEqName) if !isSynthetic(u)(left) => u.error(tree.pos, errorMessage)
-          case Select(left, BangEqName) if !isSynthetic(u)(left) => u.error(tree.pos, errorMessage)
           case Select(left, EqName) if !isSynthetic(u)(left) => u.error(tree.pos, errorMessage)
           case Select(left, NeName) if !isSynthetic(u)(left) => u.error(tree.pos, errorMessage)
           case Select(left, EqualsName) if !isSynthetic(u)(left) => u.error(tree.pos, errorMessage)
