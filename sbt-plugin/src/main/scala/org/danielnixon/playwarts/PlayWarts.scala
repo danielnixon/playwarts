@@ -9,6 +9,8 @@ object PlayWarts extends AutoPlugin {
 
   private val home = Path.userHome.getAbsolutePath
   private val version = buildinfo.BuildInfo.version
+  private val artifactID = buildinfo.BuildInfo.artifactID
+  private val organization = buildinfo.BuildInfo.organization
 
   object autoImport {
     val PlayWart = org.danielnixon.playwarts.PlayWart
@@ -19,10 +21,10 @@ object PlayWarts extends AutoPlugin {
   override def requires = WartRemover
 
   override lazy val projectSettings = Seq(
-    libraryDependencies += "org.danielnixon" % "playwarts_2.11" % version % Provided,
+    libraryDependencies += organization % artifactID % version % Provided,
     wartremoverClasspaths ++= Seq(
-      s"file:$home/.ivy2/local/org.danielnixon/playwarts_2.11/$version/jars/playwarts_2.11.jar",
-      s"file:$home/.ivy2/cache/org.danielnixon/playwarts_2.11/jars/playwarts_2.11-$version.jar"
+      s"file:$home/.ivy2/local/$organization/$artifactID/$version/jars/$artifactID.jar",
+      s"file:$home/.ivy2/cache/$organization/$artifactID/jars/$artifactID-$version.jar"
     ),
     wartremoverExcluded ++= Seq(
       crossTarget.value / "routes" / "main" / "controllers" / "ReverseRoutes.scala",

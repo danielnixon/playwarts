@@ -33,6 +33,7 @@ lazy val commonSettings = Seq(
     .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true)
 )
 
+val coreName = "playwarts"
 val playVersion = "2.5.4"
 val wartremoverVersion = "1.1.0"
 val scalatestVersion = "2.2.6"
@@ -50,7 +51,7 @@ lazy val core = Project(
   id = "core",
   base = file("core")
 ).settings(commonSettings ++ Seq(
-  name := "playwarts",
+  name := coreName,
   scalaVersion := "2.11.8",
   libraryDependencies ++= Seq(
     "org.wartremover" %% "wartremover" % wartremoverVersion,
@@ -88,7 +89,7 @@ lazy val sbtPlug: Project = Project(
 ).disablePlugins(
   ScoverageSbtPlugin
 ).settings(commonSettings ++ Seq(
-  buildInfoKeys := Seq[BuildInfoKey](version),
+  buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> s"${coreName}_2.11"),
   buildInfoPackage := "buildinfo",
   sbtPlugin := true,
   name := "sbt-playwarts",
