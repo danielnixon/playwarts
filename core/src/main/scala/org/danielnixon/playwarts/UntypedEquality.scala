@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-import org.wartremover.{WartUniverse, WartTraverser}
+import org.wartremover.{ WartUniverse, WartTraverser }
 
 object UntypedEquality extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {

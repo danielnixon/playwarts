@@ -3,7 +3,7 @@ import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.WSResponsePartial
 import org.scalatest.FunSuite
 import play.api.libs.json.JsValue
-import play.api.libs.ws.{WSCookie, WSResponse}
+import play.api.libs.ws.{ WSCookie, WSResponse }
 
 import scala.xml.Elem
 

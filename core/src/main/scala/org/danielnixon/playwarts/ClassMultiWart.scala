@@ -1,11 +1,12 @@
 package org.danielnixon.playwarts
 
-import org.wartremover.{WartTraverser, WartUniverse}
+import org.wartremover.{ WartTraverser, WartUniverse }
 
 abstract class ClassMultiWart(
-  wartClassName: String,
-  targetClassName: String,
-  methods: List[(String, String)]) extends WartTraverser {
+    wartClassName: String,
+    targetClassName: String,
+    methods: List[(String, String)]
+) extends WartTraverser {
 
   class Op(name: String, error: String) extends WartTraverser {
     override lazy val className = wartClassName

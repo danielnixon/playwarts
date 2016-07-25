@@ -1,5 +1,5 @@
 import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.{BasicStreamingActionPartial => BasicStreamingActionWart}
+import org.danielnixon.playwarts.{ BasicStreamingActionPartial => BasicStreamingActionWart }
 import org.scalatest.FunSuite
 import slick.dbio.Effect.All
 import slick.dbio.NoStream

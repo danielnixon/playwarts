@@ -1,7 +1,7 @@
 import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.CookiesPartial
 import org.scalatest.FunSuite
-import play.api.mvc.{Cookie, Cookies}
+import play.api.mvc.{ Cookie, Cookies }
 
 class CookiesPartialTest extends FunSuite {
   val cookies = new Cookies {

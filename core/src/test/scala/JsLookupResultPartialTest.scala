@@ -1,7 +1,7 @@
 import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.JsLookupResultPartial
 import org.scalatest.FunSuite
-import play.api.libs.json.{JsUndefined, JsLookupResult}
+import play.api.libs.json.{ JsUndefined, JsLookupResult }
 
 class JsLookupResultPartialTest extends FunSuite {
 

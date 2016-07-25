@@ -1,6 +1,6 @@
 package org.danielnixon.playwarts
 
-import org.wartremover.{WartTraverser, WartUniverse}
+import org.wartremover.{ WartTraverser, WartUniverse }
 
 object Calendar extends ClassWart("java.util.Calendar", "java.util.Calendar is disabled - use java.time.* instead")
 object Date extends ClassWart("java.util.Date", "java.util.Date is disabled - use java.time.* instead")

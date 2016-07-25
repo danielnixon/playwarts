@@ -1,3 +1,5 @@
+import scalariform.formatter.preferences._
+
 lazy val commonSettings = Seq(
   organization := "org.danielnixon",
   licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
@@ -25,7 +27,10 @@ lazy val commonSettings = Seq(
     </developer>
   </developers>),
   coverageMinimum := 90,
-  coverageFailOnMinimum := true
+  coverageFailOnMinimum := true,
+  scalariformPreferences := scalariformPreferences.value
+    .setPreference(DoubleIndentClassDeclaration, true)
+    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true)
 )
 
 val playVersion = "2.5.4"

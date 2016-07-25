@@ -6,8 +6,8 @@ import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.JavaApi
 import org.scalatest.FunSuite
 import play.api
-import play.api.{Application, ApplicationLoader}
-import play.api.http.{HttpErrorHandler, HttpRequestHandler}
+import play.api.{ Application, ApplicationLoader }
+import play.api.http.{ HttpErrorHandler, HttpRequestHandler }
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration

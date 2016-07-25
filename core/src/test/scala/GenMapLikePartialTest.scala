@@ -2,7 +2,7 @@ import org.wartremover.test.WartTestTraverser
 import org.danielnixon.playwarts.GenMapLikePartial
 import org.scalatest.FunSuite
 
-import scala.collection.{GenMapLike, Map}
+import scala.collection.{ GenMapLike, Map }
 
 class GenMapLikePartialTest extends FunSuite {
   val map: GenMapLike[String, Int, Map[String, Int]] = Map[String, Int]()
