@@ -25,7 +25,6 @@ object PlayWart {
   val GenTraversableLikeOps = wart("GenTraversableLikeOps")
   val GenTraversableOnceOps = wart("GenTraversableOnceOps")
   val LegacyDateTimeCode = wart("LegacyDateTimeCode")
-  val OptionPartial = wart("OptionPartial")
   val ScalaGlobalExecutionContext = wart("ScalaGlobalExecutionContext")
   val StringOpsPartial = wart("StringOpsPartial")
   val TraversableOnceOps = wart("TraversableOnceOps")
