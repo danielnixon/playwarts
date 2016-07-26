@@ -1,5 +1,7 @@
 package org.danielnixon.playwarts
 
+import play.sbt.PlayScala
+import play.sbt.routes.RoutesKeys.routes
 import sbt._
 import sbt.Keys._
 import wartremover.WartRemover
@@ -17,21 +19,16 @@ object PlayWarts extends AutoPlugin {
 
   override def trigger = allRequirements
 
-  override def requires = WartRemover
+  override def requires = WartRemover && PlayScala
 
   override lazy val projectSettings = Seq(
     libraryDependencies += organization % artifactID % version % Provided,
     wartremoverClasspaths ++= {
       (dependencyClasspath in Compile).value.files
         .find(_.name.contains(artifactID))
-        .map(j => s"file:${j.absolutePath}")
-        .toSeq
+        .map(_.toURI.toString)
+        .toList
     },
-    wartremoverExcluded ++= Seq(
-      crossTarget.value / "routes" / "main" / "controllers" / "ReverseRoutes.scala",
-      crossTarget.value / "routes" / "main" / "controllers" / "javascript" / "JavaScriptReverseRoutes.scala",
-      crossTarget.value / "routes" / "main" / "router" / "Routes.scala",
-      crossTarget.value / "routes" / "main" / "router" / "RoutesPrefix.scala"
-    )
+    wartremoverExcluded ++= routes.in(Compile).value
   )
 }

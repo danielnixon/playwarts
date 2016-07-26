@@ -95,6 +95,7 @@ lazy val sbtPlug: Project = Project(
   name := "sbt-playwarts",
   scalaVersion := "2.10.6",
   addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
+  addSbtPlugin("com.typesafe.play" % "sbt-plugin" % playVersion),
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",
