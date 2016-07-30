@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
 |-------------------|---------------------|--------------------|---------------------|---------------|
-| 0.26              | 1.0.0               | 2.5.x              | 2.0.x               | 2.11.x        |
+| 0.27              | 1.1.0               | 2.5.x              | 2.0.x               | 2.11.x        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
 
 ## Usage
@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.26")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.27")
     ```
 
 3. Add the following to your `build.sbt`:
@@ -52,7 +52,7 @@
       PlayWart.GenMapLikePartial,
       PlayWart.GenTraversableLikeOps,
       PlayWart.GenTraversableOnceOps,
-      PlayWart.OptionPartial,
+      PlayWart.LegacyDateTimeCode,
       PlayWart.ScalaGlobalExecutionContext,
       PlayWart.StringOpsPartial,
       PlayWart.TraversableOnceOps,
@@ -174,10 +174,6 @@ all of which will throw if the list is empty. The program should be refactored t
 
 to explicitly handle both populated and empty `GenTraversableLike`s.
 
-#### OptionPartial
-
-`scala.Option.orNull` is disabled.
-
 #### ScalaGlobalExecutionContext
 
 Scala's global execution context `scala.concurrent.ExecutionContext#global` is disabled. Declare a dependency on an `ExecutionContext` instead.
@@ -233,8 +229,6 @@ implicit class TraversableOnceWrapper[A](val traversable: TraversableOnce[A]) ex
 
 `scala.Any` and `scala.AnyRef` contain a number of untyped equality methods:
 
-* `==`
-* `!=`
 * `equals`
 * `eq`
 * `ne`
