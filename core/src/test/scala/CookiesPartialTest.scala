@@ -6,7 +6,7 @@ import play.api.mvc.{ Cookie, Cookies }
 class CookiesPartialTest extends FunSuite {
   val cookies = new Cookies {
     override def get(name: String): Option[Cookie] = None
-    override def foreach[U](f: (Cookie) => U): Unit = Unit
+    override def foreach[U](f: (Cookie) => U): Unit = ()
   }
 
   test("can't use Cookies#apply") {

@@ -77,6 +77,7 @@ lazy val core = Project(
     "-Ywarn-inaccessible",
     "-Ywarn-unused",
     "-Ywarn-unused-import",
+    "-Ywarn-value-discard",
     "-Ywarn-numeric-widen",
     "-Ywarn-nullary-override")
 ): _*)
@@ -104,6 +105,7 @@ lazy val sbtPlug: Project = Project(
     "-Xlint",
     "-Ywarn-dead-code",
     "-Ywarn-inaccessible",
+    "-Ywarn-value-discard",
     "-Ywarn-numeric-widen",
     "-Ywarn-nullary-override")
 ): _*)
