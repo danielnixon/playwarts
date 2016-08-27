@@ -34,7 +34,7 @@ lazy val commonSettings = Seq(
 )
 
 val coreName = "playwarts"
-val playVersion = "2.5.4"
+val playVersion = "2.5.6"
 val wartremoverVersion = "1.1.0"
 val scalatestVersion = "3.0.0"
 
