@@ -20,6 +20,7 @@ object PlayWart {
   val BasicStreamingActionPartial = wart("BasicStreamingActionPartial")
 
   val DateFormatPartial = wart("DateFormatPartial")
+  val EnumerationPartial = wart("EnumerationPartial")
   val FutureObject = wart("FutureObject")
   val GenMapLikePartial = wart("GenMapLikePartial")
   val GenTraversableLikeOps = wart("GenTraversableLikeOps")
