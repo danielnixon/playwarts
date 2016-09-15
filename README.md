@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
 |-------------------|---------------------|--------------------|---------------------|---------------|
-| 0.27              | 1.1.0               | 2.5.x              | 2.0.x               | 2.11.x        |
+| 0.28              | 1.1.x               | 2.5.x              | 2.0.x               | 2.11.x        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
 
 ## Usage
@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.27")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.28")
     ```
 
 3. Add the following to your `build.sbt`:
@@ -48,6 +48,7 @@
     // Bonus Warts
     wartremoverWarnings ++= Seq(
       PlayWart.DateFormatPartial,
+      PlayWart.EnumerationPartial,
       PlayWart.FutureObject,
       PlayWart.GenMapLikePartial,
       PlayWart.GenTraversableLikeOps,
@@ -143,6 +144,19 @@ implicit class WSResponseWrapper(val response: WSResponse) extends AnyVal {
 implicit class DateFormatWrapper(val dateFormat: DateFormat) extends AnyVal {
   @SuppressWarnings(Array("org.danielnixon.playwarts.DateFormatPartial"))
   def parseOpt(source: String): Option[Date] = nonFatalCatch[Date] opt dateFormat.parse(source)
+}
+```
+
+#### EnumerationPartial
+
+`scala.Enumeration#withName` is disabled because is will throw a `NoSuchElementException` if there is no value matching the specified name. You can wrap it in an implicit that might look like this:
+
+```scala
+implicit class EnumerationWrapper[A <: Enumeration](val enum: A) extends AnyVal {
+  @SuppressWarnings(Array("org.danielnixon.playwarts.EnumerationPartial"))
+  def withNameOpt(s: String): Option[A#Value] = {
+    catching[A#Value](classOf[NoSuchElementException]) opt enum.withName(s)
+  }
 }
 ```
 
