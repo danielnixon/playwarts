@@ -188,6 +188,10 @@ all of which will throw if the list is empty. The program should be refactored t
 
 to explicitly handle both populated and empty `GenTraversableLike`s.
 
+#### LegacyDateTimeCode
+
+The `Date`, `TimeZone` and `Calendar` classes in the `java.util` package are disabled. Use `java.time.*` instead. See [Legacy Date-Time Code](https://docs.oracle.com/javase/tutorial/datetime/iso/legacy.html).
+
 #### ScalaGlobalExecutionContext
 
 Scala's global execution context `scala.concurrent.ExecutionContext#global` is disabled. Declare a dependency on an `ExecutionContext` instead.
