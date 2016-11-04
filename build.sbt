@@ -90,7 +90,7 @@ lazy val sbtPlug: Project = Project(
 ).disablePlugins(
   ScoverageSbtPlugin
 ).settings(commonSettings ++ Seq(
-  buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> s"${coreName}_2.11"),
+  buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> coreName),
   buildInfoPackage := "buildinfo",
   sbtPlugin := true,
   name := "sbt-playwarts",

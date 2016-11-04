@@ -22,7 +22,7 @@ object PlayWarts extends AutoPlugin {
   override def requires = WartRemover && PlayScala
 
   override lazy val projectSettings = Seq(
-    libraryDependencies += organization % artifactID % version % Provided,
+    libraryDependencies += organization %% artifactID % version % Provided,
     wartremoverClasspaths ++= {
       (dependencyClasspath in Compile).value.files
         .find(_.name.contains(artifactID))
