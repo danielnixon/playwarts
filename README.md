@@ -108,7 +108,7 @@ The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
 #### PlayGlobalExecutionContext
 
-Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead.
+Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead. See [MUST NOT hardcode the thread-pool / execution context](https://github.com/alexandru/scala-best-practices/blob/master/sections/4-concurrency-parallelism.md#411-must-not-hardcode-the-thread-pool--execution-context).
 
 #### SessionPartial
 
@@ -194,7 +194,7 @@ The `Date`, `TimeZone` and `Calendar` classes in the `java.util` package are dis
 
 #### ScalaGlobalExecutionContext
 
-Scala's global execution context `scala.concurrent.ExecutionContext#global` is disabled. Declare a dependency on an `ExecutionContext` instead.
+Scala's global execution context `scala.concurrent.ExecutionContext#global` is disabled. Declare a dependency on an `ExecutionContext` instead. See [MUST NOT hardcode the thread-pool / execution context](https://github.com/alexandru/scala-best-practices/blob/master/sections/4-concurrency-parallelism.md#411-must-not-hardcode-the-thread-pool--execution-context).
 
 #### StringOpsPartial
 
