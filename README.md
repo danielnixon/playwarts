@@ -108,7 +108,7 @@ The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
 #### PlayGlobalExecutionContext
 
-Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead. See [MUST NOT hardcode the thread-pool / execution context](https://github.com/alexandru/scala-best-practices/blob/master/sections/4-concurrency-parallelism.md#411-must-not-hardcode-the-thread-pool--execution-context).
+Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead. To materialize the dependency, you can inject `BuiltInComponentsFromContext#actorSystem.dispatcher`. See [MUST NOT hardcode the thread-pool / execution context](https://github.com/alexandru/scala-best-practices/blob/master/sections/4-concurrency-parallelism.md#411-must-not-hardcode-the-thread-pool--execution-context).
 
 #### SessionPartial
 
