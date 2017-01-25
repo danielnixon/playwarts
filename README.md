@@ -170,7 +170,7 @@ implicit class EnumerationWrapper[A <: Enumeration](val enum: A) extends AnyVal 
 
 #### GenTraversableLikeOps
 
-WartRemover's [ListOps](https://github.com/puffnfresh/wartremover#listops) wart only applies to `scala.collection.immutable.List`. The `GenTraversableLikeOps` wart extends it to everything that implements `scala.collection.GenTraversableLike`.
+WartRemover's [TraversableOps](https://github.com/wartremover/wartremover#traversableops) wart only applies to `scala.collection.Traversable`. The `GenTraversableLikeOps` wart extends it to everything that implements `scala.collection.GenTraversableLike`.
 
 `scala.collection.GenTraversableLike` has:
 
