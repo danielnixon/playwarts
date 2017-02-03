@@ -9,9 +9,9 @@ import wartremover.WartRemover.autoImport.{ wartremoverClasspaths, wartremoverEx
 
 object PlayWarts extends AutoPlugin {
 
-  private val version = buildinfo.BuildInfo.version
-  private val artifactID = buildinfo.BuildInfo.artifactID
-  private val organization = buildinfo.BuildInfo.organization
+  private val version = BuildInfo.version
+  private val artifactID = BuildInfo.artifactID
+  private val organization = BuildInfo.organization
 
   object autoImport {
     val PlayWart = org.danielnixon.playwarts.PlayWart

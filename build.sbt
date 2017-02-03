@@ -14,18 +14,19 @@ lazy val commonSettings = Seq(
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
   },
   homepage := Some(url("https://github.com/danielnixon/playwarts")),
-  pomExtra := (
-  <scm>
-    <url>git@github.com:danielnixon/playwarts.git</url>
-    <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>danielnixon</id>
-      <name>Daniel Nixon</name>
-      <url>https://danielnixon.org/</url>
-    </developer>
-  </developers>),
+  pomExtra := {
+    <scm>
+      <url>git@github.com:danielnixon/playwarts.git</url>
+      <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
+    </scm>
+      <developers>
+        <developer>
+          <id>danielnixon</id>
+          <name>Daniel Nixon</name>
+          <url>https://danielnixon.org/</url>
+        </developer>
+      </developers>
+  },
   coverageMinimum := 90,
   coverageFailOnMinimum := true,
   scalariformPreferences := scalariformPreferences.value
@@ -91,7 +92,7 @@ lazy val sbtPlug: Project = Project(
   ScoverageSbtPlugin
 ).settings(commonSettings ++ Seq(
   buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> coreName),
-  buildInfoPackage := "buildinfo",
+  buildInfoPackage := "org.danielnixon.playwarts",
   sbtPlugin := true,
   name := "sbt-playwarts",
   scalaVersion := "2.10.6",
