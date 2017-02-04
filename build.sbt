@@ -92,9 +92,9 @@ lazy val sbtPlug: Project = Project(
   ScoverageSbtPlugin
 ).settings(commonSettings ++ Seq(
   buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> coreName),
-  buildInfoPackage := "org.danielnixon.playwarts",
+  buildInfoPackage := s"${organization.value}.$coreName",
   sbtPlugin := true,
-  name := "sbt-playwarts",
+  name := s"sbt-$coreName",
   scalaVersion := "2.10.6",
   addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
   addSbtPlugin("com.typesafe.play" % "sbt-plugin" % playVersion),
