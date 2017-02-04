@@ -17,11 +17,11 @@ object PlayWarts extends AutoPlugin {
     val PlayWart = org.danielnixon.playwarts.PlayWart
   }
 
-  override def trigger = allRequirements
+  override def trigger: PluginTrigger = allRequirements
 
-  override def requires = WartRemover && PlayScala
+  override def requires: Plugins = WartRemover && PlayScala
 
-  override lazy val projectSettings = Seq(
+  override lazy val projectSettings: Seq[Setting[_]] = Seq(
     libraryDependencies += organization %% artifactID % version % Provided,
     wartremoverClasspaths ++= {
       (dependencyClasspath in Compile).value.files
