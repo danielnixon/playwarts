@@ -31,7 +31,17 @@ lazy val commonSettings = Seq(
   coverageFailOnMinimum := true,
   scalariformPreferences := scalariformPreferences.value
     .setPreference(DoubleIndentClassDeclaration, true)
-    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true)
+    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true),
+  scalacOptions ++= Seq(
+    "-deprecation",
+    "-feature",
+    "-unchecked",
+    "-Xfatal-warnings",
+    "-Ywarn-dead-code",
+    "-Ywarn-inaccessible",
+    "-Ywarn-value-discard",
+    "-Ywarn-numeric-widen",
+    "-Ywarn-nullary-override")
 )
 
 val coreName = "playwarts"
@@ -68,19 +78,7 @@ lazy val core = Project(
   dependencyOverrides ++= Set(
     "org.scalatest" %% "scalatest" % scalatestVersion
   ),
-  scalacOptions ++= Seq(
-    "-deprecation",
-    "-feature",
-    "-unchecked",
-    "-Xfatal-warnings",
-    "-Xlint:_",
-    "-Ywarn-dead-code",
-    "-Ywarn-inaccessible",
-    "-Ywarn-unused",
-    "-Ywarn-unused-import",
-    "-Ywarn-value-discard",
-    "-Ywarn-numeric-widen",
-    "-Ywarn-nullary-override")
+  scalacOptions ++= Seq("-Xlint:_", "-Ywarn-unused", "-Ywarn-unused-import")
 ): _*)
 
 lazy val sbtPlug: Project = Project(
@@ -98,17 +96,7 @@ lazy val sbtPlug: Project = Project(
   scalaVersion := "2.10.6",
   addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
   addSbtPlugin("com.typesafe.play" % "sbt-plugin" % playVersion),
-  scalacOptions ++= Seq(
-    "-deprecation",
-    "-feature",
-    "-unchecked",
-    "-Xfatal-warnings",
-    "-Xlint",
-    "-Ywarn-dead-code",
-    "-Ywarn-inaccessible",
-    "-Ywarn-value-discard",
-    "-Ywarn-numeric-widen",
-    "-Ywarn-nullary-override")
+  scalacOptions += "-Xlint"
 ): _*)
 
 addCommandAlias("publishLocalCoverageOff", ";clean;coverageOff;compile;test;publishLocal")
