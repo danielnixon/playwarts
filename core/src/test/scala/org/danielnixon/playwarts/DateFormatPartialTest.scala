@@ -1,8 +1,9 @@
+package org.danielnixon.playwarts
+
 import java.text.SimpleDateFormat
 
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.DateFormatPartial
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 
 class DateFormatPartialTest extends FunSuite {
   val format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z")

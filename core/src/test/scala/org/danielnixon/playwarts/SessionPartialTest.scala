@@ -1,6 +1,7 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.SessionPartial
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 import play.api.mvc.Session
 
 class SessionPartialTest extends FunSuite {

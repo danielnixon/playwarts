@@ -1,6 +1,7 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.ScalaGlobalExecutionContext
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 
 class ScalaGlobalExecutionContextTest extends FunSuite {
   test("can't use global explicit execution context") {

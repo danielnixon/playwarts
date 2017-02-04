@@ -1,6 +1,7 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.UntypedEquality
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 
 class UntypedEqualityTest extends FunSuite {
   test("can't use eq operator") {

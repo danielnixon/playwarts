@@ -1,6 +1,7 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.HeadersPartial
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 import play.api.mvc.Headers
 
 class HeadersPartialTest extends FunSuite {

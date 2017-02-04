@@ -1,6 +1,7 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.AssetsObject
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 import play.api.http.HttpErrorHandler
 import play.api.mvc.{ RequestHeader, Result }
 

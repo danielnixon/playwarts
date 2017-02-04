@@ -1,3 +1,5 @@
+package org.danielnixon.playwarts
+
 import akka.stream.Materializer
 import play.api.Application
 

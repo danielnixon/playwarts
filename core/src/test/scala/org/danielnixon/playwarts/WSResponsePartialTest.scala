@@ -1,7 +1,8 @@
+package org.danielnixon.playwarts
+
 import akka.util.ByteString
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.WSResponsePartial
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 import play.api.libs.json.JsValue
 import play.api.libs.ws.{ WSCookie, WSResponse }
 

@@ -1,7 +1,8 @@
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.JsReadablePartial
+package org.danielnixon.playwarts
+
 import org.scalatest.FunSuite
-import play.api.libs.json.{ JsUndefined, JsReadable }
+import org.wartremover.test.WartTestTraverser
+import play.api.libs.json.{ JsReadable, JsUndefined }
 
 class JsReadablePartialTest extends FunSuite {
 

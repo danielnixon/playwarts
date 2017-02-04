@@ -1,13 +1,14 @@
+package org.danielnixon.playwarts
+
 import java.io.File
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.JavaApi
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 import play.api
-import play.api.{ Application, ApplicationLoader }
 import play.api.http.{ HttpErrorHandler, HttpRequestHandler }
+import play.api.{ Application, ApplicationLoader }
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration

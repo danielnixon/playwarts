@@ -1,8 +1,7 @@
-import java.util.Date
+package org.danielnixon.playwarts
 
-import org.wartremover.test.WartTestTraverser
-import org.danielnixon.playwarts.LegacyDateTimeCode
 import org.scalatest.FunSuite
+import org.wartremover.test.WartTestTraverser
 
 class LegacyDateTimeCodeTest extends FunSuite {
   test("can't use java.util.Date") {
@@ -56,7 +55,7 @@ class LegacyDateTimeCodeTest extends FunSuite {
 
         override def getRawOffset: Int = ???
 
-        override def inDaylightTime(date: Date): Boolean = ???
+        override def inDaylightTime(date: java.util.Date): Boolean = ???
       }
     }
     assertResult(List("java.util.TimeZone is disabled - use java.time.* instead", "java.util.TimeZone is disabled - use java.time.* instead"), "result.errors")(result.errors)
