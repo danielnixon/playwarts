@@ -9,7 +9,7 @@ abstract class ObjectMultiWart(
 ) extends WartTraverser {
 
   class Op(name: String, error: String) extends WartTraverser {
-    override lazy val className = wartClassName
+    override lazy val className: String = wartClassName
 
     def apply(u: WartUniverse): u.Traverser = {
       import u.universe._

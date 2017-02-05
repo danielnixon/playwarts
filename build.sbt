@@ -27,7 +27,7 @@ lazy val commonSettings = Seq(
         </developer>
       </developers>
   },
-  coverageMinimum := 90,
+  coverageMinimum := 94,
   coverageFailOnMinimum := true,
   scalariformPreferences := scalariformPreferences.value
     .setPreference(DoubleIndentClassDeclaration, true)
