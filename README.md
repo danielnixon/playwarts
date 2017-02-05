@@ -5,14 +5,14 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/f641de970f1f4a98a1900ee38250bb7d)](https://www.codacy.com/app/danielnixon/playwarts)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11)
 
-[WartRemover](https://github.com/wartremover/wartremover) warts for [Play Framework](https://www.playframework.com/) and [Slick](http://slick.typesafe.com/) (and some bonus warts).
+[WartRemover](https://github.com/wartremover/wartremover) warts for [Play Framework](https://www.playframework.com/) (and some bonus warts).
 
 ## Versions
 
-| PlayWarts version | WartRemover version | Play version       | Play Slick version  | Scala version |
-|-------------------|---------------------|--------------------|---------------------|---------------|
-| 0.28              | 1.1.x               | 2.5.x              | 2.0.x               | 2.11.x        |
-| 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 1.1.x               | 2.11.x        |
+| PlayWarts version | WartRemover version | Play version       | Scala version |
+|-------------------|---------------------|--------------------|---------------|
+| 0.28              | 1.1.x               | 2.5.x              | 2.11.x        |
+| 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        |
 
 ## Usage
 
@@ -40,10 +40,6 @@
       PlayWart.PlayGlobalExecutionContext,
       PlayWart.SessionPartial,
       PlayWart.WSResponsePartial)
-
-    // Slick
-    wartremoverWarnings ++= Seq(
-      PlayWart.BasicStreamingActionPartial)
 
     // Bonus Warts
     wartremoverWarnings ++= Seq(
@@ -132,7 +128,7 @@ implicit class WSResponseWrapper(val response: WSResponse) extends AnyVal {
 
 #### BasicStreamingActionPartial
 
-`slick.profile.BasicStreamingAction` has a `head` method which will fail if the stream is empty (i.e. if the `SELECT` SQL query returned zero rows). Use `headOption` instead.
+Deprecated. Use [SlickWarts](https://github.com/danielnixon/slickwarts) instead.
 
 ### Bonus Warts
 

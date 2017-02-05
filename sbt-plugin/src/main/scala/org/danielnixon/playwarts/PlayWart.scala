@@ -17,6 +17,7 @@ object PlayWart {
   val SessionPartial: Wart = wart("SessionPartial")
   val WSResponsePartial: Wart = wart("WSResponsePartial")
 
+  @deprecated("Use sbt-slickwarts instead.", "0.29.0")
   val BasicStreamingActionPartial: Wart = wart("BasicStreamingActionPartial")
 
   val DateFormatPartial: Wart = wart("DateFormatPartial")
