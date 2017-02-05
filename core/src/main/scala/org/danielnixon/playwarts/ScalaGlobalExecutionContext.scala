@@ -1,5 +1,6 @@
 package org.danielnixon.playwarts
 
+@deprecated("Use sbt-extrawarts instead.", "0.29.0")
 object ScalaGlobalExecutionContext extends ObjectMultiWart(
   "org.danielnixon.playwarts.ScalaGlobalExecutionContext",
   "scala.concurrent.ExecutionContext",

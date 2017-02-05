@@ -1,5 +1,6 @@
 package org.danielnixon.playwarts
 
+@deprecated("Use sbt-extrawarts instead.", "0.29.0")
 object GenTraversableOnceOps extends ClassMultiWart(
   "org.danielnixon.playwarts.GenTraversableOnceOps",
   "scala.collection.GenTraversableOnce",

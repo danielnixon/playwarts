@@ -2,6 +2,7 @@ package org.danielnixon.playwarts
 
 import org.wartremover.{ WartUniverse, WartTraverser }
 
+@deprecated("Use sbt-extrawarts instead.", "0.29.0")
 object UntypedEquality extends WartTraverser {
   def apply(u: WartUniverse): u.Traverser = {
     import u.universe._
