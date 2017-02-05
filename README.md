@@ -121,5 +121,6 @@ Deprecated. Use [ExtraWarts](https://github.com/danielnixon/extrawarts) instead.
 
 ## See also
 
+* [ExtraWarts](https://github.com/danielnixon/extrawarts): Extra WartRemover warts.
 * [SlickWarts](https://github.com/danielnixon/slickwarts): WartRemover warts for [Slick](http://slick.typesafe.com/).
 * [Scala.js Warts](https://github.com/danielnixon/scalajswarts):  WartRemover warts for [Scala.js](https://www.scala-js.org/).
