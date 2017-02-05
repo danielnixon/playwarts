@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Scala version |
 |-------------------|---------------------|--------------------|---------------|
-| 0.28              | 1.1.x               | 2.5.x              | 2.11.x        |
+| 0.29.0            | 1.3.0               | 2.5.12             | 2.11.8        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        |
 
 ## Usage
