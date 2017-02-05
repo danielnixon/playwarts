@@ -248,3 +248,8 @@ implicit class TraversableOnceWrapper[A](val traversable: TraversableOnce[A]) ex
 * `ne`
 
 All of which are disabled. Use a typesafe alternative (such as [Scalaz's Equal typeclass](http://eed3si9n.com/learning-scalaz/Equal.html) or [Heiko Seeberger's solution](http://hseeberger.github.io/blog/2013/05/30/implicits-unchained-type-safe-equality-part1/)) instead.
+
+## See also
+
+* [SlickWarts](https://github.com/danielnixon/slickwarts): WartRemover warts for [Slick](http://slick.typesafe.com/).
+* [Scala.js Warts](https://github.com/danielnixon/scalajswarts):  WartRemover warts for [Scala.js](https://www.scala-js.org/).
