@@ -95,7 +95,6 @@ lazy val sbtPlug: Project = Project(
   name := s"sbt-$coreName",
   scalaVersion := "2.10.6",
   addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
-  addSbtPlugin("com.typesafe.play" % "sbt-plugin" % playVersion),
   scalacOptions += "-Xlint"
 ): _*)
 
