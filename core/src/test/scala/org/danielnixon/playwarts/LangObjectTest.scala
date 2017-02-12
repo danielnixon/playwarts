@@ -8,7 +8,7 @@ class LangObjectTest extends FunSuite {
     val result = WartTestTraverser(LangObject) {
       play.api.i18n.Lang.apply("en")
     }
-    assertResult(List("play.api.i18n.Lang is disabled - use play.api.i18n.Langs instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:LangObject] play.api.i18n.Lang is disabled - use play.api.i18n.Langs instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

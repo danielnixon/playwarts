@@ -5,7 +5,7 @@ import org.wartremover.test.WartTestTraverser
 import play.api.mvc.{ Cookie, Cookies }
 
 class CookiesPartialTest extends FunSuite {
-  val cookies = new Cookies {
+  val cookies: Cookies = new Cookies {
     override def get(name: String): Option[Cookie] = None
     override def foreach[U](f: (Cookie) => U): Unit = ()
   }
@@ -14,7 +14,7 @@ class CookiesPartialTest extends FunSuite {
     val result = WartTestTraverser(CookiesPartial) {
       val foo = cookies("foo")
     }
-    assertResult(List("Cookies#apply is disabled - use Cookies#get instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:CookiesPartial] Cookies#apply is disabled - use Cookies#get instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

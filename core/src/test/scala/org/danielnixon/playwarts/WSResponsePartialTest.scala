@@ -9,7 +9,7 @@ import play.api.libs.ws.{ WSCookie, WSResponse }
 import scala.xml.Elem
 
 class WSResponsePartialTest extends FunSuite {
-  val response = new WSResponse {
+  val response: WSResponse = new WSResponse {
     override def allHeaders: Map[String, Seq[String]] = ???
 
     override def statusText: String = ???
@@ -37,7 +37,7 @@ class WSResponsePartialTest extends FunSuite {
     val result = WartTestTraverser(WSResponsePartial) {
       response.json
     }
-    assertResult(List("WSResponse#json is disabled"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:WSResponsePartial] WSResponse#json is disabled"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -45,7 +45,7 @@ class WSResponsePartialTest extends FunSuite {
     val result = WartTestTraverser(WSResponsePartial) {
       response.xml
     }
-    assertResult(List("WSResponse#xml is disabled"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:WSResponsePartial] WSResponse#xml is disabled"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 }

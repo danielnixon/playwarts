@@ -9,7 +9,7 @@ class FlashPartialTest extends FunSuite {
     val result = WartTestTraverser(FlashPartial) {
       val foo = Flash()("foo")
     }
-    assertResult(List("Flash#apply is disabled - use Flash#get instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:FlashPartial] Flash#apply is disabled - use Flash#get instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

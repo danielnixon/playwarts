@@ -10,7 +10,7 @@ class FormPartialTest extends FunSuite {
     val result = WartTestTraverser(FormPartial) {
       Form("foo" -> text).get
     }
-    assertResult(List("Form#get is disabled - use Form#fold instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:FormPartial] Form#get is disabled - use Form#fold instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

@@ -9,7 +9,7 @@ class SessionPartialTest extends FunSuite {
     val result = WartTestTraverser(SessionPartial) {
       val foo = Session()("foo")
     }
-    assertResult(List("Session#apply is disabled - use Session#get instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:SessionPartial] Session#apply is disabled - use Session#get instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

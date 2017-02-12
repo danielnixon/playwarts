@@ -12,7 +12,7 @@ class JsLookupResultPartialTest extends FunSuite {
     val result = WartTestTraverser(JsLookupResultPartial) {
       val foo = jsLookupResult.get
     }
-    assertResult(List("JsLookupResult#get is disabled - use JsLookupResult#getOrElse instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JsLookupResultPartial] JsLookupResult#get is disabled - use JsLookupResult#getOrElse instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

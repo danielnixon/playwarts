@@ -22,7 +22,7 @@ abstract class ObjectMultiWart(
           tree match {
             // Ignore trees marked by SuppressWarnings
             case t if hasWartAnnotation(u)(t) =>
-            case Select(tpt, Name) if tpt.tpe.contains(symbol) => u.error(tree.pos, error)
+            case Select(tpt, Name) if tpt.tpe.contains(symbol) => error(u)(tree.pos, error)
             case _ => super.traverse(tree)
           }
         }

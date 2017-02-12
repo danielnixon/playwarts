@@ -9,7 +9,7 @@ class HeadersPartialTest extends FunSuite {
     val result = WartTestTraverser(HeadersPartial) {
       val foo = Headers()("foo")
     }
-    assertResult(List("Headers#apply is disabled - use Headers#get instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:HeadersPartial] Headers#apply is disabled - use Headers#get instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

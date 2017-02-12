@@ -15,7 +15,7 @@ abstract class ClassMethodWart(targetClassName: String, termName: String, errorM
           // Ignore trees marked by SuppressWarnings
           case t if hasWartAnnotation(u)(t) =>
           case Select(left, Name) if left.tpe.baseType(symbol) != NoType =>
-            u.error(tree.pos, errorMessage)
+            error(u)(tree.pos, errorMessage)
           case LabelDef(_, _, rhs) if isSynthetic(u)(tree) =>
           case _ => super.traverse(tree)
         }

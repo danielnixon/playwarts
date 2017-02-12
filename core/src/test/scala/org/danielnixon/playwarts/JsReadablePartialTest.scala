@@ -12,7 +12,7 @@ class JsReadablePartialTest extends FunSuite {
     val result = WartTestTraverser(JsReadablePartial) {
       val foo = jsReadable.as[String]
     }
-    assertResult(List("JsReadable#as is disabled - use JsReadable#asOpt instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JsReadablePartial] JsReadable#as is disabled - use JsReadable#asOpt instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

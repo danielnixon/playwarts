@@ -9,7 +9,7 @@ class PlayGlobalExecutionContextTest extends FunSuite {
     val result = WartTestTraverser(PlayGlobalExecutionContext) {
       val foo = play.api.libs.concurrent.Execution.defaultContext
     }
-    assertResult(List("Execution is disabled - declare a dependency on an ExecutionContext instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:PlayGlobalExecutionContext] Execution is disabled - declare a dependency on an ExecutionContext instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -17,7 +17,7 @@ class PlayGlobalExecutionContextTest extends FunSuite {
     val result = WartTestTraverser(PlayGlobalExecutionContext) {
       val foo = play.api.libs.concurrent.Execution.Implicits
     }
-    assertResult(List("Execution is disabled - declare a dependency on an ExecutionContext instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:PlayGlobalExecutionContext] Execution is disabled - declare a dependency on an ExecutionContext instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

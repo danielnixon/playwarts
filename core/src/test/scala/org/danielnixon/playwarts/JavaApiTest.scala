@@ -18,7 +18,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.cache.NamedCacheImpl("")
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -42,7 +42,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.db.NamedDatabaseImpl("")
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -58,7 +58,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.http.DefaultHttpErrorHandler(null, null, null, null)
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -74,7 +74,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.i18n.Messages(null, null)
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -90,7 +90,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.inject.Bindings
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -106,7 +106,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = play.libs.Json.newDefaultMapper
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -128,7 +128,7 @@ class JavaApiTest extends FunSuite {
         override def method(): String = ???
       }
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -144,7 +144,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.libs.mailer.Attachment("", new File(""))
     }
-    assertResult(List("The Java API is disabled - use the Scala API", "The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API", "[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -160,7 +160,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.test.WithApplication
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -178,7 +178,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.routing.JavaScriptReverseRouter
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -200,7 +200,7 @@ class JavaApiTest extends FunSuite {
         override def configuration(): play.Configuration = ???
       }
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -236,7 +236,7 @@ class JavaApiTest extends FunSuite {
         override def load(context: play.ApplicationLoader.Context): play.Application = ???
       }
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -254,7 +254,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = play.Configuration.empty
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -270,7 +270,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = new play.DefaultApplication(null, null).configuration
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -286,7 +286,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = play.Environment.simple()
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
@@ -302,7 +302,7 @@ class JavaApiTest extends FunSuite {
     val result = WartTestTraverser(JavaApi) {
       val foo = play.Logger.of("")
     }
-    assertResult(List("The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 

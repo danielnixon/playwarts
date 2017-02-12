@@ -12,7 +12,7 @@ class AssetsObjectTest extends FunSuite {
     val result = WartTestTraverser(AssetsObject) {
       val foo = controllers.Assets.at("", "")
     }
-    assertResult(List("controllers.Assets is disabled - use dependency injection instead", "controllers.Assets is disabled - use dependency injection instead"), "result.errors")(result.errors)
+    assertResult(List("[wartremover:AssetsObject] controllers.Assets is disabled - use dependency injection instead", "[wartremover:AssetsObject] controllers.Assets is disabled - use dependency injection instead"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
   }
 
