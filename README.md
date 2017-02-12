@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Scala version |
 |-------------------|---------------------|--------------------|---------------|
-| 0.30.0            | 1.3.0               | 2.5.12             | 2.11.8        |
+| 0.31.0            | 2.0.1               | 2.5.12             | 2.11.8        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        |
 
 ## Usage
@@ -20,7 +20,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.30.0")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.31.0")
     ```
 
 3. Add the following to your `build.sbt`:
