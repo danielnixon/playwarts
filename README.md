@@ -109,16 +109,6 @@ implicit class WSResponseWrapper(val response: WSResponse) extends AnyVal {
 }
 ```
 
-### Slick
-
-#### BasicStreamingActionPartial
-
-Deprecated. Use [SlickWarts](https://github.com/danielnixon/slickwarts) instead.
-
-### Bonus Warts
-
-Deprecated. Use [ExtraWarts](https://github.com/danielnixon/extrawarts) instead.
-
 ## See also
 
 * [sbt-ignore-play-generated](https://github.com/danielnixon/sbt-ignore-play-generated): Configure linters and coverage tools to ignore Play's generated source files.
