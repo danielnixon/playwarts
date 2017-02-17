@@ -1,28 +1,37 @@
 package org.danielnixon.playwarts
 
+import java.io.File
+
+import akka.actor.ActorSystem
 import akka.stream.Materializer
-import play.api.Application
+import play.api.http.{ HttpErrorHandler, HttpRequestHandler }
+import play.api.mvc.request.RequestFactory
+import play.api.{ Application, Configuration, Environment }
+
+import scala.concurrent.Future
 
 object FakeApp {
   def app: Application = {
     new Application {
-      override def path = ???
+      override def path: File = ???
 
-      override def actorSystem = ???
+      override def classloader: ClassLoader = ???
 
-      override def errorHandler = ???
+      override def environment: Environment = ???
 
-      override def stop() = ???
+      override def configuration: Configuration = ???
 
-      override def requestHandler = ???
-
-      override def classloader = ???
-
-      override def mode = ???
-
-      override def configuration = ???
+      override def actorSystem: ActorSystem = ???
 
       override implicit def materializer: Materializer = ???
+
+      override def requestFactory: RequestFactory = ???
+
+      override def requestHandler: HttpRequestHandler = ???
+
+      override def errorHandler: HttpErrorHandler = ???
+
+      override def stop(): Future[_] = ???
     }
   }
 }

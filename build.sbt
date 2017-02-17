@@ -1,5 +1,11 @@
 import scalariform.formatter.preferences._
 
+val scala210 = "2.10.6"
+val scala211 = "2.11.8"
+val scala212 = "2.12.1"
+
+scalaVersion := scala212
+
 lazy val commonSettings = Seq(
   organization := "org.danielnixon",
   licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
@@ -45,35 +51,28 @@ lazy val commonSettings = Seq(
 )
 
 val coreName = "playwarts"
-val playVersion = "2.5.12"
-val wartremoverVersion = "2.0.1"
+val playVersion = "2.6.0-M1"
+val wartremoverVersion = "2.0.2"
 val scalatestVersion = "3.0.1"
-
-lazy val root = Project(
-  id = "root",
-  base = file("."),
-  aggregate = Seq(core, sbtPlug)
-).settings(commonSettings ++ Seq(
-  publishArtifact := false,
-  scalaVersion := "2.11.8"
-): _*)
 
 lazy val core = Project(
   id = "core",
   base = file("core")
 ).settings(commonSettings ++ Seq(
   name := coreName,
-  scalaVersion := "2.11.8",
+  scalaVersion := scala212,
+  crossScalaVersions := Seq(scala211, scala212),
   libraryDependencies ++= Seq(
     "org.wartremover" %% "wartremover" % wartremoverVersion,
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "2.0.2" % Test,
+    "com.typesafe.play" %% "play-slick" % "3.0.0-M2" % Test,
+    "org.joda" % "joda-convert" % "1.8.1" % Test, // TODO: Compilation fails without this...
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,
     "com.typesafe.play" %% "play-specs2" % playVersion % Test,
-    "com.typesafe.play" %% "play-mailer" % "5.0.0" % Test
+    "com.typesafe.play" %% "play-mailer" % "6.0.0-M1" % Test
   ),
   dependencyOverrides ++= Set(
     "org.scalatest" %% "scalatest" % scalatestVersion
@@ -93,8 +92,9 @@ lazy val sbtPlug: Project = Project(
   buildInfoPackage := s"${organization.value}.$coreName",
   sbtPlugin := true,
   name := s"sbt-$coreName",
-  scalaVersion := "2.10.6",
-  addSbtPlugin("org.wartremover" %% "sbt-wartremover" % wartremoverVersion),
+  scalaVersion := scala210,
+  crossScalaVersions := Seq(scala210),
+  addSbtPlugin("org.wartremover" % "sbt-wartremover" % wartremoverVersion),
   scalacOptions += "-Xlint"
 ): _*)
 

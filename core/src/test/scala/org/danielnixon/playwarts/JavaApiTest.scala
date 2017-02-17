@@ -4,11 +4,13 @@ import java.io.File
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
+import com.typesafe.config.{ Config, ConfigFactory }
 import org.scalatest.FunSuite
 import org.wartremover.test.WartTestTraverser
 import play.api
 import play.api.http.{ HttpErrorHandler, HttpRequestHandler }
-import play.api.{ Application, ApplicationLoader }
+import play.api.mvc.request.RequestFactory
+import play.api.{ Application, ApplicationLoader, Environment }
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
@@ -48,7 +50,7 @@ class JavaApiTest extends FunSuite {
 
   test("can use play.api.db package") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.api.db.slick.DefaultSlickApi(null, null, null)
+      val foo = new play.api.db.slick.DefaultSlickApi(null, null, null)(null)
     }
     assertResult(List.empty, "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
@@ -56,7 +58,7 @@ class JavaApiTest extends FunSuite {
 
   test("can't use play.http package") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.http.DefaultHttpErrorHandler(null, null, null, null)
+      val foo = new play.http.DefaultHttpErrorHandler(ConfigFactory.load(""), null, null, null)
     }
     assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
@@ -72,7 +74,7 @@ class JavaApiTest extends FunSuite {
 
   test("can't use play.i18n package") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.i18n.Messages(null, null)
+      val foo = new play.i18n.Lang(java.util.Locale.ENGLISH)
     }
     assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
@@ -80,7 +82,7 @@ class JavaApiTest extends FunSuite {
 
   test("can use play.api.i18n package") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.api.i18n.Messages(null, null)
+      val foo = new play.api.i18n.Lang(java.util.Locale.ENGLISH)
     }
     assertResult(List.empty, "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
@@ -198,6 +200,8 @@ class JavaApiTest extends FunSuite {
         override def getWrappedApplication: Application = ???
 
         override def configuration(): play.Configuration = ???
+
+        override def config(): Config = ???
       }
     }
     assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
@@ -224,6 +228,10 @@ class JavaApiTest extends FunSuite {
         override def configuration: api.Configuration = ???
 
         override implicit def materializer: Materializer = ???
+
+        override def environment: Environment = ???
+
+        override def requestFactory: RequestFactory = ???
       }
     }
     assertResult(List.empty, "result.errors")(result.errors)
@@ -268,7 +276,7 @@ class JavaApiTest extends FunSuite {
 
   test("can't use play.DefaultApplication class") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.DefaultApplication(null, null).configuration
+      val foo = new play.DefaultApplication(null, null).config
     }
     assertResult(List("[wartremover:JavaApi] The Java API is disabled - use the Scala API"), "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
@@ -276,7 +284,7 @@ class JavaApiTest extends FunSuite {
 
   test("can use play.api.DefaultApplication class") {
     val result = WartTestTraverser(JavaApi) {
-      val foo = new play.api.DefaultApplication(null, null, null, null, null, null, null, null).configuration
+      val foo = new play.api.DefaultApplication(null, null, null, null, null, null, null, null, null).configuration
     }
     assertResult(List.empty, "result.errors")(result.errors)
     assertResult(List.empty, "result.warnings")(result.warnings)
