@@ -51,7 +51,7 @@ lazy val commonSettings = Seq(
 )
 
 val coreName = "playwarts"
-val playVersion = "2.6.0-M1"
+val playVersion = "2.6.0-M2"
 val wartremoverVersion = "2.0.2"
 val scalatestVersion = "3.0.1"
 
@@ -67,7 +67,7 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "3.0.0-M2" % Test,
+    "com.typesafe.play" %% "play-slick" % "3.0.0-M3" % Test,
     "org.joda" % "joda-convert" % "1.8.1" % Test, // TODO: Compilation fails without this...
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,
