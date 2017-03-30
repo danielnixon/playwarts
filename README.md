@@ -5,7 +5,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/f641de970f1f4a98a1900ee38250bb7d)](https://www.codacy.com/app/danielnixon/playwarts)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.danielnixon/playwarts_2.11)
 
-[WartRemover](https://github.com/wartremover/wartremover) warts for [Play Framework](https://www.playframework.com/) (and some bonus warts).
+[WartRemover](https://github.com/wartremover/wartremover) warts for [Play Framework](https://www.playframework.com/).
 
 ## Versions
 
