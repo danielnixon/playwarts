@@ -1,8 +1,8 @@
 import scalariform.formatter.preferences._
 
 val scala210 = "2.10.6"
-val scala211 = "2.11.8"
-val scala212 = "2.12.1"
+val scala211 = "2.11.11"
+val scala212 = "2.12.2"
 
 scalaVersion := scala212
 
@@ -47,13 +47,15 @@ lazy val commonSettings = Seq(
     "-Ywarn-inaccessible",
     "-Ywarn-value-discard",
     "-Ywarn-numeric-widen",
-    "-Ywarn-nullary-override")
+    "-Ywarn-nullary-override"),
+  // TODO: Remove after Play 2.6 is released.
+  resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 )
 
 val coreName = "playwarts"
-val playVersion = "2.6.0-M2"
-val wartremoverVersion = "2.0.2"
-val scalatestVersion = "3.0.1"
+val playVersion = "2.6.0-RC1"
+val wartremoverVersion = "2.0.3"
+val scalatestVersion = "3.0.3"
 
 lazy val core = Project(
   id = "core",
@@ -67,7 +69,7 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "3.0.0-M3" % Test,
+    "com.typesafe.play" %% "play-slick" % "3.0.0-RC1" % Test,
     "org.joda" % "joda-convert" % "1.8.1" % Test, // TODO: Compilation fails without this...
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,

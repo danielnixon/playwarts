@@ -25,7 +25,7 @@ abstract class ClassMultiWart(
             case Select(left, Name) if left.tpe.baseType(symbol) != NoType ⇒
               error(u)(tree.pos, error)
             // TODO: This ignores a lot
-            case LabelDef(_, _, rhs) if isSynthetic(u)(tree) ⇒
+            case LabelDef(_, _, _) if isSynthetic(u)(tree) ⇒
             case _ ⇒
               super.traverse(tree)
           }

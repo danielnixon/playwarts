@@ -16,7 +16,7 @@ abstract class ClassMethodWart(targetClassName: String, termName: String, errorM
           case t if hasWartAnnotation(u)(t) =>
           case Select(left, Name) if left.tpe.baseType(symbol) != NoType =>
             error(u)(tree.pos, errorMessage)
-          case LabelDef(_, _, rhs) if isSynthetic(u)(tree) =>
+          case LabelDef(_, _, _) if isSynthetic(u)(tree) =>
           case _ => super.traverse(tree)
         }
       }

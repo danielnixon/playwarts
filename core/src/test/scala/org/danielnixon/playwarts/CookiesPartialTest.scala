@@ -2,13 +2,10 @@ package org.danielnixon.playwarts
 
 import org.scalatest.FunSuite
 import org.wartremover.test.WartTestTraverser
-import play.api.mvc.{ Cookie, Cookies }
+import play.api.mvc.Cookies
 
 class CookiesPartialTest extends FunSuite {
-  val cookies: Cookies = new Cookies {
-    override def get(name: String): Option[Cookie] = None
-    override def foreach[U](f: (Cookie) => U): Unit = ()
-  }
+  def cookies: Cookies = ???
 
   test("can't use Cookies#apply") {
     val result = WartTestTraverser(CookiesPartial) {
