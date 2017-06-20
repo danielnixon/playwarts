@@ -13,7 +13,6 @@ object PlayWart {
   val JsReadablePartial: Wart = wart("JsReadablePartial")
   val LangObject: Wart = wart("LangObject")
   val MessagesObject: Wart = wart("MessagesObject")
-  val PlayGlobalExecutionContext: Wart = wart("PlayGlobalExecutionContext")
   val SessionPartial: Wart = wart("SessionPartial")
   val WSResponsePartial: Wart = wart("WSResponsePartial")
 
