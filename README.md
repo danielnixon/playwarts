@@ -9,11 +9,11 @@
 
 ## Versions
 
-| PlayWarts version | WartRemover version | Play version       | Scala version   |
-|-------------------|---------------------|--------------------|-----------------|
-| 0.33.0            | 2.1.0               | 2.6.0-RC2          | 2.11.11, 2.12.2 |
-| 0.31.0 ([README](https://github.com/danielnixon/playwarts/blob/fda3dc2ebc78bc62c598375c0656ce83f932cf8b/README.md))            | 2.0.1               | 2.5.12             | 2.11.8          |
-| 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        |
+| PlayWarts version | WartRemover version | Play version       | Scala version   | Supported |
+|-------------------|---------------------|--------------------|-----------------|-----------|
+| 0.33.0            | 2.1.0               | 2.6.0-RC2          | 2.11.11, 2.12.2 |           |
+| 0.31.0 ([README](https://github.com/danielnixon/playwarts/blob/fda3dc2ebc78bc62c598375c0656ce83f932cf8b/README.md))            | 2.0.1               | 2.5.x             | 2.11.x          | No        |
+| 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        | No        |
 
 ## Usage
 
