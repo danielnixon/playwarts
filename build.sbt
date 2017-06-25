@@ -47,13 +47,11 @@ lazy val commonSettings = Seq(
     "-Ywarn-inaccessible",
     "-Ywarn-value-discard",
     "-Ywarn-numeric-widen",
-    "-Ywarn-nullary-override"),
-  // TODO: Remove after Play 2.6 is released.
-  resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
+    "-Ywarn-nullary-override")
 )
 
 val coreName = "playwarts"
-val playVersion = "2.6.0-RC2"
+val playVersion = "2.6.0"
 val wartremoverVersion = "2.1.1"
 val scalatestVersion = "3.0.3"
 
@@ -69,12 +67,11 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "3.0.0-RC1" % Test,
-    "org.joda" % "joda-convert" % "1.8.1" % Test, // TODO: Compilation fails without this...
+    "com.typesafe.play" %% "play-slick" % "3.0.0" % Test,
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,
     "com.typesafe.play" %% "play-specs2" % playVersion % Test,
-    "com.typesafe.play" %% "play-mailer" % "6.0.0-M1" % Test
+    "com.typesafe.play" %% "play-mailer" % "6.0.0" % Test
   ),
   dependencyOverrides ++= Set(
     "org.scalatest" %% "scalatest" % scalatestVersion
