@@ -14,6 +14,7 @@ object PlayWart {
   val LangObject: Wart = wart("LangObject")
   val MessagesObject: Wart = wart("MessagesObject")
   val SessionPartial: Wart = wart("SessionPartial")
+  val TypedMapPartial: Wart = wart("TypedMapPartial")
   val WSResponsePartial: Wart = wart("WSResponsePartial")
 
   private def wart(name: String) = {
