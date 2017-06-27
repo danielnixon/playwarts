@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Scala version   | Supported |
 |-------------------|---------------------|--------------------|-----------------|-----------|
-| 0.33.0            | 2.1.0               | 2.6.0-RC2          | 2.11.11, 2.12.2 |           |
+| 1.0.0             | 2.1.1               | 2.6.0              | 2.11.11, 2.12.2 |           |
 | 0.31.0 ([README](https://github.com/danielnixon/playwarts/blob/fda3dc2ebc78bc62c598375c0656ce83f932cf8b/README.md))            | 2.0.1               | 2.5.x             | 2.11.x          | No        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        | No        |
 
@@ -21,7 +21,7 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "0.33.0")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "1.0.0")
     ```
 
 3. Add the following to your `build.sbt`:
@@ -37,8 +37,8 @@
       PlayWart.JsReadablePartial,
       PlayWart.LangObject,
       PlayWart.MessagesObject,
-      PlayWart.PlayGlobalExecutionContext,
       PlayWart.SessionPartial,
+      PlayWart.TypedMapPartial,
       PlayWart.WSResponsePartial)
     ```
 
@@ -88,13 +88,13 @@ The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
 
 `play.api.i18n.Messages.Implicits` exists to allow you to continue to use static controller objects in Play 2.4.x. Use controller classes with dependency injection instead. See [Migration24#I18n](https://www.playframework.com/documentation/2.4.x/Migration24#I18n).
 
-#### PlayGlobalExecutionContext
-
-Play's global execution context `play.api.libs.concurrent.Execution#defaultContext` is disabled. Declare a dependency on an `ExecutionContext` instead. See [MUST NOT hardcode the thread-pool / execution context](https://github.com/alexandru/scala-best-practices/blob/master/sections/4-concurrency-parallelism.md#411-must-not-hardcode-the-thread-pool--execution-context).
-
 #### SessionPartial
 
 `play.api.mvc.Session` has an `apply` method that can throw. Use `Session#get` instead.
+
+#### TypedMapPartial
+
+`play.api.libs.typedmap.TypedMap` has an `apply` method that can throw. Use `TypedMap#get` instead.
 
 #### WSResponsePartial
 
