@@ -3,8 +3,7 @@ import scalariform.formatter.preferences._
 val scala210 = "2.10.6"
 val scala211 = "2.11.11"
 val scala212 = "2.12.3"
-
-scalaVersion := scala212
+val scalaVersions = Seq(scala211, scala212)
 
 lazy val commonSettings = Seq(
   organization := "org.danielnixon",
@@ -47,7 +46,14 @@ lazy val commonSettings = Seq(
     "-Ywarn-inaccessible",
     "-Ywarn-value-discard",
     "-Ywarn-numeric-widen",
-    "-Ywarn-nullary-override")
+    "-Ywarn-nullary-override"),
+  scalaVersion := scalaVersions.last,
+  sbtVersion := {
+    scalaBinaryVersion.value match {
+      case "2.10" => "0.13.16"
+      case _      => "1.0.2"
+    }
+  }
 )
 
 val coreName = "playwarts"
@@ -60,8 +66,7 @@ lazy val core = Project(
   base = file("core")
 ).settings(commonSettings ++ Seq(
   name := coreName,
-  scalaVersion := scala212,
-  crossScalaVersions := Seq(scala211, scala212),
+  crossScalaVersions := scalaVersions,
   libraryDependencies ++= Seq(
     "org.wartremover" %% "wartremover" % wartremoverVersion,
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
@@ -77,7 +82,17 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion
   ),
   scalacOptions ++= Seq("-Xlint:_", "-Ywarn-unused", "-Ywarn-unused-import")
-): _*)
+): _*).enablePlugins(CrossPerProjectPlugin)
+
+/**
+  * Workaround for https://github.com/sbt/sbt/issues/3393.
+  */
+def addSbtPluginHack(dependency: ModuleID): Setting[Seq[ModuleID]] =
+  libraryDependencies += {
+    val sbtV = (sbtBinaryVersion in pluginCrossBuild).value
+    val scalaV = (scalaBinaryVersion in update).value
+    Defaults.sbtPluginExtra(dependency, sbtV, scalaV)
+  }
 
 lazy val sbtPlug: Project = Project(
   id = "sbt-plugin",
@@ -90,12 +105,8 @@ lazy val sbtPlug: Project = Project(
   buildInfoKeys := Seq[BuildInfoKey](version, organization, "artifactID" -> coreName),
   buildInfoPackage := s"${organization.value}.$coreName",
   sbtPlugin := true,
+  crossScalaVersions := Seq(scala210, scala212),
   name := s"sbt-$coreName",
-  scalaVersion := scala210,
-  crossScalaVersions := Seq(scala210),
-  addSbtPlugin("org.wartremover" % "sbt-wartremover" % wartremoverVersion),
+  addSbtPluginHack("org.wartremover" % "sbt-wartremover" % wartremoverVersion),
   scalacOptions += "-Xlint"
-): _*)
-
-addCommandAlias("publishLocalCoverageOff", ";clean;coverageOff;compile;test;publishLocal")
-addCommandAlias("publishSignedCoverageOff", ";clean;coverageOff;compile;test;publishSigned")
+): _*).enablePlugins(CrossPerProjectPlugin)
