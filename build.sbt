@@ -2,7 +2,7 @@ import scalariform.formatter.preferences._
 
 val scala210 = "2.10.6"
 val scala211 = "2.11.11"
-val scala212 = "2.12.2"
+val scala212 = "2.12.3"
 
 scalaVersion := scala212
 
@@ -51,9 +51,9 @@ lazy val commonSettings = Seq(
 )
 
 val coreName = "playwarts"
-val playVersion = "2.6.0"
-val wartremoverVersion = "2.1.1"
-val scalatestVersion = "3.0.3"
+val playVersion = "2.6.6"
+val wartremoverVersion = "2.2.1"
+val scalatestVersion = "3.0.4"
 
 lazy val core = Project(
   id = "core",
@@ -67,11 +67,11 @@ lazy val core = Project(
     "org.scalatest" %% "scalatest" % scalatestVersion % Test,
     "com.typesafe.play" %% "play" % playVersion % Test,
     "com.typesafe.play" %% "play-test" % playVersion % Test,
-    "com.typesafe.play" %% "play-slick" % "3.0.0" % Test,
+    "com.typesafe.play" %% "play-slick" % "3.0.2" % Test,
     "com.typesafe.play" %% "play-ws" % playVersion % Test,
     "com.typesafe.play" %% "play-cache" % playVersion % Test,
     "com.typesafe.play" %% "play-specs2" % playVersion % Test,
-    "com.typesafe.play" %% "play-mailer" % "6.0.0" % Test
+    "com.typesafe.play" %% "play-mailer" % "6.0.1" % Test
   ),
   dependencyOverrides ++= Set(
     "org.scalatest" %% "scalatest" % scalatestVersion
