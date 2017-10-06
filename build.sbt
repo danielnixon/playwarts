@@ -35,8 +35,9 @@ lazy val commonSettings = Seq(
   coverageMinimum := 94,
   coverageFailOnMinimum := true,
   scalariformPreferences := scalariformPreferences.value
-    .setPreference(DoubleIndentClassDeclaration, true)
-    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true),
+    .setPreference(DoubleIndentConstructorArguments, true)
+    .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true)
+    .setPreference(DanglingCloseParenthesis, Preserve),
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",
