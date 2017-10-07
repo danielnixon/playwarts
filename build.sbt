@@ -1,4 +1,5 @@
 import scalariform.formatter.preferences._
+import ReleaseTransformations._
 
 val scala210 = "2.10.6"
 val scala211 = "2.11.11"
@@ -8,30 +9,12 @@ val scalaVersions = Seq(scala211, scala212)
 lazy val commonSettings = Seq(
   organization := "org.danielnixon",
   licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
-  version := "1.0.1-SNAPSHOT",
-  publishMavenStyle := true,
-  publishArtifact in Test := false,
-  publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-  },
   homepage := Some(url("https://github.com/danielnixon/playwarts")),
-  pomExtra := {
-    <scm>
-      <url>git@github.com:danielnixon/playwarts.git</url>
-      <connection>scm:git:git@github.com:danielnixon/playwarts.git</connection>
-    </scm>
-      <developers>
-        <developer>
-          <id>danielnixon</id>
-          <name>Daniel Nixon</name>
-          <url>https://danielnixon.org/</url>
-        </developer>
-      </developers>
-  },
+  scmInfo := Some(
+    ScmInfo(url("https://github.com/danielnixon/playwarts"), "git@github.com:danielnixon/playwarts.git")),
+  developers := List(
+    Developer("danielnixon", "Daniel Nixon", "dan.nixon@gmail.com", url("https://danielnixon.org/"))
+  ),
   coverageMinimum := 94,
   coverageFailOnMinimum := true,
   scalariformPreferences := scalariformPreferences.value
@@ -61,6 +44,28 @@ val coreName = "playwarts"
 val playVersion = "2.6.6"
 val wartremoverVersion = "2.2.1"
 val scalatestVersion = "3.0.4"
+
+lazy val root = Project(
+  id = "root",
+  base = file("."),
+  aggregate = Seq(core, sbtPlug)
+).settings(commonSettings ++ Seq(
+  publishArtifact := false,
+  releaseCrossBuild := true,
+  releaseProcess := Seq[ReleaseStep](
+    checkSnapshotDependencies,
+    inquireVersions,
+    releaseStepCommandAndRemaining("+test"),
+    setReleaseVersion,
+    commitReleaseVersion,
+    tagRelease,
+    releaseStepCommandAndRemaining("+publishSigned"),
+    setNextVersion,
+    commitNextVersion,
+    releaseStepCommandAndRemaining("sonatypeReleaseAll"),
+    pushChanges
+  )
+): _*).enablePlugins(CrossPerProjectPlugin)
 
 lazy val core = Project(
   id = "core",
