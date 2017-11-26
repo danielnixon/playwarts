@@ -1,7 +1,7 @@
 import scalariform.formatter.preferences._
 import ReleaseTransformations._
 
-val scala210 = "2.10.6"
+val scala210 = "2.10.7"
 val scala211 = "2.11.11"
 val scala212 = "2.12.3"
 val scalaVersions = Seq(scala211, scala212)
@@ -41,7 +41,7 @@ lazy val commonSettings = Seq(
 )
 
 val coreName = "playwarts"
-val playVersion = "2.6.6"
+val playVersion = "2.6.7"
 val wartremoverVersion = "2.2.1"
 val scalatestVersion = "3.0.4"
 
