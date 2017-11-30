@@ -3,7 +3,6 @@ package org.danielnixon.playwarts
 import wartremover.Wart
 
 object PlayWart {
-  val AssetsObject: Wart = wart("AssetsObject")
   val CookiesPartial: Wart = wart("CookiesPartial")
   val FlashPartial: Wart = wart("FlashPartial")
   val FormPartial: Wart = wart("FormPartial")
@@ -12,7 +11,6 @@ object PlayWart {
   val JsLookupResultPartial: Wart = wart("JsLookupResultPartial")
   val JsReadablePartial: Wart = wart("JsReadablePartial")
   val LangObject: Wart = wart("LangObject")
-  val MessagesObject: Wart = wart("MessagesObject")
   val SessionPartial: Wart = wart("SessionPartial")
   val TypedMapPartial: Wart = wart("TypedMapPartial")
   val WSResponsePartial: Wart = wart("WSResponsePartial")
