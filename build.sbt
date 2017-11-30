@@ -2,8 +2,8 @@ import scalariform.formatter.preferences._
 import ReleaseTransformations._
 
 val scala210 = "2.10.7"
-val scala211 = "2.11.11"
-val scala212 = "2.12.3"
+val scala211 = "2.11.12"
+val scala212 = "2.12.4"
 val scalaVersions = Seq(scala211, scala212)
 
 lazy val commonSettings = Seq(
@@ -25,7 +25,7 @@ lazy val commonSettings = Seq(
     "-deprecation",
     "-feature",
     "-unchecked",
-    "-Xfatal-warnings",
+//    "-Xfatal-warnings", TODO
     "-Ywarn-dead-code",
     "-Ywarn-inaccessible",
     "-Ywarn-value-discard",
@@ -35,7 +35,7 @@ lazy val commonSettings = Seq(
   sbtVersion := {
     scalaBinaryVersion.value match {
       case "2.10" => "0.13.16"
-      case _      => "1.0.2"
+      case _      => "1.0.4"
     }
   }
 )
