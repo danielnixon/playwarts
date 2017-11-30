@@ -59,7 +59,6 @@ lazy val root = Project(
     setReleaseVersion,
     commitReleaseVersion,
     tagRelease,
-    releaseStepCommandAndRemaining("reload"),
     runClean,
     releaseStepCommandAndRemaining("+publishSigned"),
     setNextVersion,
