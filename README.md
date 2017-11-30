@@ -11,7 +11,7 @@
 
 | PlayWarts version | WartRemover version | Play version       | Scala version   | sbt version   | Supported |
 |-------------------|---------------------|--------------------|-----------------|---------------|-----------|
-| 1.1.0             | 2.2.1               | 2.6.6              | 2.11.11, 2.12.3 | 1.0.x, 0.13.x |           |
+| 1.2.0             | 2.2.1               | 2.6.7              | 2.11.12, 2.12.4 | 1.0.x, 0.13.x |           |
 | 1.0.0             | 2.1.1               | 2.6.0              | 2.11.11, 2.12.2 | 0.13.x        | No        |
 | 0.31.0 ([README](https://github.com/danielnixon/playwarts/blob/fda3dc2ebc78bc62c598375c0656ce83f932cf8b/README.md))            | 2.0.1               | 2.5.x             | 2.11.x          | 0.13.x        | No        |
 | 0.15 ([README](https://github.com/danielnixon/playwarts/blob/77b01471e016d2d494224dd838715eeff6e19ebf/README.md))     | 0.14                | 2.4.x              | 2.11.x        | 0.13.x        | No        |
@@ -22,22 +22,21 @@
 2. Add the following to your `plugins.sbt`:
 
     ```scala
-    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "1.1.0")
+    addSbtPlugin("org.danielnixon" % "sbt-playwarts" % "1.2.0")
     ```
 
 3. Add the following to your `build.sbt`:
     ```scala
     wartremoverWarnings ++= Seq(
-      PlayWart.AssetsObject,
       PlayWart.CookiesPartial,
       PlayWart.FlashPartial,
       PlayWart.FormPartial,
       PlayWart.HeadersPartial,
+      PlayWart.InjectedController,
       PlayWart.JavaApi,
       PlayWart.JsLookupResultPartial,
       PlayWart.JsReadablePartial,
       PlayWart.LangObject,
-      PlayWart.MessagesObject,
       PlayWart.SessionPartial,
       PlayWart.TypedMapPartial,
       PlayWart.WSResponsePartial)
@@ -46,10 +45,6 @@
 ## Warts
 
 ### Play Framework
-
-#### AssetsObject
-
-The `controllers.Assets` object depends on global state. Declare a dependency on an instance of the `controllers.Assets` class instead.
 
 #### CookiesPartial
 
@@ -69,6 +64,10 @@ explicitly handle forms with errors and successful form submissions.
 
 `play.api.mvc.Headers` has an `apply` method that can throw. Use `Headers#get` instead.
 
+#### InjectedController
+
+Inheriting from `play.api.mvc.InjectedController` is disabled because it uses JSR 330 method injection and therefore _cannot_ work without mutability and magic (and it hinders testing). Inherit your controllers from `AbstractController` instead. See [Migration26#Scala-Controller-changes](https://www.playframework.com/documentation/2.6.x/Migration26#Scala-Controller-changes).
+
 #### JavaApi
 
 The Java API in the `play` package is disabled. Use the Scala API under `play.api` instead.
@@ -84,10 +83,6 @@ The Java API in the `play` package is disabled. Use the Scala API under `play.ap
 #### LangObject
 
 The `play.api.i18n.Lang` object is disabled. Use `play.api.i18n.Langs` instead.
-
-#### MessagesObject
-
-`play.api.i18n.Messages.Implicits` exists to allow you to continue to use static controller objects in Play 2.4.x. Use controller classes with dependency injection instead. See [Migration24#I18n](https://www.playframework.com/documentation/2.4.x/Migration24#I18n).
 
 #### SessionPartial
 
